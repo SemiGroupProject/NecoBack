@@ -7,6 +7,8 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.trade.project.global.error.ErrorCode;
+import com.trade.project.global.error.exceptions.InvalidValueException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -53,7 +55,7 @@ public class S3Uploader {
     // 1. MultipartFile을 전달 받는다
     public String upload(MultipartFile multipartFile, String fileName, String dirName) throws IOException {
         File uploadFile = convert(multipartFile, fileName)
-                .orElseThrow(() -> new IllegalArgumentException("MultipartFile -> File로 전환이 실패했습니다."));
+                .orElseThrow(() -> new InvalidValueException(ErrorCode.FILE_MULTIPART_CHANGE_ERROR));
 
         return upload(uploadFile, dirName);
     }

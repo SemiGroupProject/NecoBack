@@ -12,6 +12,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -40,7 +43,7 @@ class FileServiceTest extends ProjectApplicationTests {
     private MockMultipartFile[] createMockMultipartFiles() {
         MockMultipartFile[] files = new MockMultipartFile[4];
         for (int i = 0; i < 4; i++) {
-            StringBuffer fileName = new StringBuffer("test" + i + 1 + ".jpg");
+            StringBuffer fileName = new StringBuffer("test" + i + 1 + ".jpgg");
 
             files[i] = new MockMultipartFile(
                     "content",

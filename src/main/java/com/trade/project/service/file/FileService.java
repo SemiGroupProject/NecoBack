@@ -10,6 +10,7 @@ import com.trade.project.global.file.s3provider.S3Deleter;
 import com.trade.project.global.file.s3provider.S3Uploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
@@ -25,7 +26,6 @@ public class FileService {
      * */
     public FileResponse uploadFiles(FileRequest dto)
             throws IOException, IllegalStateException, IllegalArgumentException {
-
         FileProcess fileProcess = FileProcessFactory.getFileProcess(dto.getFilePolicy());
 
         if(isS3FileProcess(fileProcess)) {

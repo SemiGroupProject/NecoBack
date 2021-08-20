@@ -1,6 +1,8 @@
 package com.trade.project.global.file.process;
 
 import com.trade.project.dto.file.FileResponse;
+import com.trade.project.global.error.ErrorCode;
+import com.trade.project.global.error.exceptions.InvalidValueException;
 import com.trade.project.global.file.policy.FilePolicy;
 import com.trade.project.global.file.s3provider.S3Deleter;
 import com.trade.project.global.file.s3provider.S3Uploader;
@@ -40,7 +42,7 @@ public class S3FileProcess implements FileProcess{
     @Override
     public FileResponse uploadFile(MultipartFile... files) throws IOException, IllegalStateException, IllegalArgumentException {
         if(files.length > fileCount) {
-            throw new IllegalArgumentException("There are more files than should be received");
+            throw new InvalidValueException(ErrorCode.FILE_INPUT_AMOUNT);
         }
 
         for(MultipartFile file : files) {
@@ -56,7 +58,7 @@ public class S3FileProcess implements FileProcess{
     @Override
     public void deleteFiles(String fileName) throws IllegalArgumentException {
         if(fileName == null || fileName.length() == 0) {
-            throw new IllegalArgumentException("Entered the wrong path");
+            throw new InvalidValueException(ErrorCode.INVALID_INPUT_VALUE);
         }
 
         String[] fileOriginNames = fileName.split(">");
