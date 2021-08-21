@@ -1,6 +1,6 @@
-package com.trade.project.global.file.process;
+package com.trade.project.file.process;
 
-import com.trade.project.global.file.policy.FilePolicy;
+import com.trade.project.file.policy.FilePolicy;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

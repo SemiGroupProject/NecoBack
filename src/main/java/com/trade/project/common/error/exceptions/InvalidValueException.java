@@ -1,6 +1,4 @@
-package com.trade.project.global.error.exceptions;
-
-import com.trade.project.global.error.ErrorCode;
+package com.trade.project.common.error.exceptions;
 
 public class InvalidValueException extends BusinessException {
     public InvalidValueException(ErrorCode errorCode) {

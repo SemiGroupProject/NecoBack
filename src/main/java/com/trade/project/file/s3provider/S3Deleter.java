@@ -1,4 +1,4 @@
-package com.trade.project.global.file.s3provider;
+package com.trade.project.file.s3provider;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;

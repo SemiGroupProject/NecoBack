@@ -1,5 +1,6 @@
-package com.trade.project.global.error;
+package com.trade.project.common.error;
 
+import com.trade.project.common.error.exceptions.ErrorCode;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

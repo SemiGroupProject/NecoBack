@@ -1,24 +1,24 @@
-package com.trade.project.domain.vo;
+package com.trade.project.common.vo;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-@Getter
-@Setter
 @Embeddable
-@Builder
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ImageInfo {
 
-    @Column(nullable = false)
+    @Column(length = 1023)
     private String url;
 
-    @Column(nullable = false)
+    @Column(length = 1023)
     private String fileName;
 
-    public ImageInfo(@NonNull String url, @NonNull String fileName) {
+    public ImageInfo(String url, String fileName) {
         this.url = url;
         this.fileName = fileName;
     }

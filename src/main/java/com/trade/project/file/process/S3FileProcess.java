@@ -1,11 +1,12 @@
-package com.trade.project.global.file.process;
+package com.trade.project.file.process;
 
+import com.trade.project.common.vo.ImageInfo;
 import com.trade.project.dto.file.FileResponse;
-import com.trade.project.global.error.ErrorCode;
-import com.trade.project.global.error.exceptions.InvalidValueException;
-import com.trade.project.global.file.policy.FilePolicy;
-import com.trade.project.global.file.s3provider.S3Deleter;
-import com.trade.project.global.file.s3provider.S3Uploader;
+import com.trade.project.common.error.exceptions.ErrorCode;
+import com.trade.project.common.error.exceptions.InvalidValueException;
+import com.trade.project.file.policy.FilePolicy;
+import com.trade.project.file.s3provider.S3Deleter;
+import com.trade.project.file.s3provider.S3Uploader;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class S3FileProcess implements FileProcess{
     }
 
     @Override
-    public FileResponse uploadFile(MultipartFile... files) throws IOException, IllegalStateException, IllegalArgumentException {
+    public ImageInfo uploadFile(MultipartFile... files) throws IOException, IllegalStateException, IllegalArgumentException {
         if(files.length > fileCount) {
             throw new InvalidValueException(ErrorCode.FILE_INPUT_AMOUNT);
         }
@@ -52,7 +53,7 @@ public class S3FileProcess implements FileProcess{
 
         deleteLastGt();
 
-        return new FileResponse(fileUrls.toString(), fileNames.toString());
+        return new ImageInfo(fileUrls.toString(), fileNames.toString());
     }
 
     @Override

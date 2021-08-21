@@ -1,4 +1,4 @@
-package com.trade.project.global.file.s3provider;
+package com.trade.project.file.s3provider;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -7,8 +7,8 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.trade.project.global.error.ErrorCode;
-import com.trade.project.global.error.exceptions.InvalidValueException;
+import com.trade.project.common.error.exceptions.ErrorCode;
+import com.trade.project.common.error.exceptions.InvalidValueException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

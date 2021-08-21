@@ -1,4 +1,4 @@
-package com.trade.project.global.file.policy;
+package com.trade.project.file.policy;
 
 import lombok.Getter;
 
