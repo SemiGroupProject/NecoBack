@@ -12,10 +12,10 @@ import javax.persistence.Embeddable;
 public class AddressInfo {
 
     private int zipNo;
-    private String address;
+    private String street;
 
-    public AddressInfo(int zipNo, String address) {
+    public AddressInfo(int zipNo, String street) {
         this.zipNo = zipNo;
-        this.address = address;
+        this.street = street;
     }
 }

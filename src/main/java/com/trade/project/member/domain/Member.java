@@ -36,7 +36,6 @@ public class Member {
     @OneToOne(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Store store;
 
-    @Builder
     public Member(String accountId, String password, String name, String phoneNumber,
                   AddressInfo addressInfo) {
         this.accountId = accountId;

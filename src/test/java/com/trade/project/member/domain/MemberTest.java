@@ -1,37 +1,24 @@
 package com.trade.project.member.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.trade.project.fixture.MemberFixture.CHANGE_PASSWORD;
+import static com.trade.project.fixture.MemberFixture.MEMBER1;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class MemberTest {
 
-    private Member member;
-
-    @BeforeEach
-    void setUp() {
-        this.member = Member.builder()
-                .accountId("id")
-                .addressInfo(new AddressInfo(1234, "서울시"))
-                .name("user1")
-                .password("1234")
-                .phoneNumber("010-1111-1111")
-                .build();
-    }
 
 
     @DisplayName("비밀번호 변경")
     @Test
     void updatePassword() {
-        String updatePassword = "4232";
+        MEMBER1.updatePassword(CHANGE_PASSWORD);
 
-        member.updatePassword(updatePassword);
-
-        assertThat(member.getPassword()).isEqualTo(updatePassword);
+        assertThat(MEMBER1.getPassword()).isEqualTo(CHANGE_PASSWORD);
     }
 
     @DisplayName("비밀번호 변경: 예외처리")
@@ -41,11 +28,11 @@ class MemberTest {
         String updatePasswordBlank = "";
 
         assertAll(
-                () -> assertThatThrownBy(() -> member.updatePassword(updatePasswordNull))
+                () -> assertThatThrownBy(() -> MEMBER1.updatePassword(updatePasswordNull))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage("There is no password to change"),
 
-                () -> assertThatThrownBy(() -> member.updatePassword(updatePasswordBlank))
+                () -> assertThatThrownBy(() -> MEMBER1.updatePassword(updatePasswordBlank))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage("There is no password to change")
         );
@@ -57,11 +44,11 @@ class MemberTest {
     void updateAddressInfo() {
         AddressInfo address = new AddressInfo(5678, "경기도");
 
-        member.updateAddressInfo(address);
+        MEMBER1.updateAddressInfo(address);
 
         assertAll(
-                () -> assertThat(member.getAddressInfo().getZipNo()).isEqualTo(address.getZipNo()),
-                () -> assertThat(member.getAddressInfo().getAddress()).isEqualTo(address.getAddress())
+                () -> assertThat(MEMBER1.getAddressInfo().getZipNo()).isEqualTo(address.getZipNo()),
+                () -> assertThat(MEMBER1.getAddressInfo().getStreet()).isEqualTo(address.getStreet())
         );
     }
 
@@ -70,7 +57,7 @@ class MemberTest {
     void updateAddressInfoException() {
         AddressInfo address = null;
 
-        assertThatThrownBy(() -> member.updateAddressInfo(address))
+        assertThatThrownBy(() -> MEMBER1.updateAddressInfo(address))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("There is no address info to change");
     }
