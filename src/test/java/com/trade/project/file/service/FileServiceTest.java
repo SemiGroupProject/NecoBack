@@ -1,8 +1,7 @@
-package com.trade.project.service.file;
+package com.trade.project.file.service;
 
 import com.trade.project.ProjectApplicationTests;
 import com.trade.project.common.vo.ImageInfo;
-import com.trade.project.dto.file.FileResponse;
 import com.trade.project.file.policy.FilePolicy;
 import com.trade.project.file.process.FileProcess;
 import com.trade.project.file.process.S3FileProcess;
@@ -14,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
@@ -34,14 +34,14 @@ class FileServiceTest extends ProjectApplicationTests {
     private MockMultipartFile[] files;
 
     @BeforeEach
-    void getMockMultipartFiles() {
+    void setUp() {
         files = createMockMultipartFiles();
     }
 
     private MockMultipartFile[] createMockMultipartFiles() {
-        MockMultipartFile[] files = new MockMultipartFile[4];
-        for (int i = 0; i < 4; i++) {
-            StringBuffer fileName = new StringBuffer("test" + i + 1 + ".jpgg");
+        MockMultipartFile[] files = new MockMultipartFile[3];
+        for (int i = 0; i < 3; i++) {
+            StringBuffer fileName = new StringBuffer("test" + i + 1 + ".jpg");
 
             files[i] = new MockMultipartFile(
                     "content",
@@ -54,7 +54,7 @@ class FileServiceTest extends ProjectApplicationTests {
 
 
     @Test
-    @DisplayName("upload - store")
+    @DisplayName("파일을 1개 업로드한다 - STORE")
     void upload_store()throws Exception {
         //given
         S3FileProcess s3FileProcess = new S3FileProcess(FilePolicy.STORE);
@@ -72,7 +72,7 @@ class FileServiceTest extends ProjectApplicationTests {
     }
 
     @Test
-    @DisplayName("upload - ad")
+    @DisplayName("파일을 1개 업로드한다 - 광고")
     void upload_ad() throws Exception {
         //given
         S3FileProcess s3FileProcess = new S3FileProcess(FilePolicy.ADVERTISEMENT);
@@ -90,7 +90,7 @@ class FileServiceTest extends ProjectApplicationTests {
     }
 
     @Test
-    @DisplayName("upload - item")
+    @DisplayName("파일을 1개 업로드한다 - 상품")
     void upload_item() throws Exception {
         //given
         S3FileProcess s3FileProcess = new S3FileProcess(FilePolicy.ITEM);
@@ -106,6 +106,7 @@ class FileServiceTest extends ProjectApplicationTests {
         //then
         assertThat(rep.getFileName()).contains(files[0].getOriginalFilename());
     }
+
 
     @Test
     @DisplayName("delete-store")

@@ -22,4 +22,5 @@ public class ImageInfo {
         this.url = url;
         this.fileName = fileName;
     }
+
 }

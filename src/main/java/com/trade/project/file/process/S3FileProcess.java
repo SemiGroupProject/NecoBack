@@ -1,7 +1,6 @@
 package com.trade.project.file.process;
 
 import com.trade.project.common.vo.ImageInfo;
-import com.trade.project.dto.file.FileResponse;
 import com.trade.project.common.error.exceptions.ErrorCode;
 import com.trade.project.common.error.exceptions.InvalidValueException;
 import com.trade.project.file.policy.FilePolicy;

@@ -1,8 +1,6 @@
 package com.trade.project.file.service;
 
 import com.trade.project.common.vo.ImageInfo;
-import com.trade.project.dto.file.FileRequest;
-import com.trade.project.dto.file.FileResponse;
 import com.trade.project.file.policy.FilePolicy;
 import com.trade.project.file.process.FileProcess;
 import com.trade.project.file.process.FileProcessFactory;
