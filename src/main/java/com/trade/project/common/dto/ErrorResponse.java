@@ -1,6 +1,6 @@
-package com.trade.project.common.error;
+package com.trade.project.common.dto;
 
-import com.trade.project.common.error.exceptions.ErrorCode;
+import com.trade.project.common.exceptions.ErrorCode;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,11 +28,12 @@ public class ErrorResponse {
         this.code = code.getCode();
     }
 
-    private ErrorResponse(ErrorCode code) {
+    public ErrorResponse(ErrorCode code) {
         this.message = code.getMessage();
         this.code = code.getCode();
         this.errors = new ArrayList<>();
     }
+
 
     public static ErrorResponse of(ErrorCode code, BindingResult bindingResult) {
         return new ErrorResponse(code, FieldError.of(bindingResult));

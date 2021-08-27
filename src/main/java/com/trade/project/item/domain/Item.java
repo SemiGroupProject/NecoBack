@@ -1,20 +1,25 @@
 package com.trade.project.item.domain;
 
-import com.trade.project.common.vo.Images;
+import com.trade.project.common.exceptions.InvalidValueException;
 import com.trade.project.item.dto.ItemRequest;
 import com.trade.project.member.domain.Member;
 import lombok.*;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 
 import javax.persistence.*;
+import java.util.List;
+
+import static com.trade.project.common.exceptions.ErrorCode.MEMBER_NOT_FOUND;
 
 @Entity
-@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@EntityListeners(AuditingEntityListener.class)
 public class Item {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column()
     private Long id;
 
     @Column(nullable = false)
@@ -28,7 +33,7 @@ public class Item {
     private Category category;
 
     @Embedded
-    private Images imageInfos;
+    private ItemImages itemImages;
 
     private String tradeArea;
 
@@ -43,13 +48,13 @@ public class Item {
 
     @Builder
     public Item(String title, String content, long price, Category category,
-                Images imageInfos, String tradeArea, ShippingPrice shippingPrice,
+                ItemImages itemImages, String tradeArea, ShippingPrice shippingPrice,
                 Member member, long hits) {
         this.title = title;
         this.content = content;
         this.price = price;
         this.category=category;
-        this.imageInfos = imageInfos;
+        this.itemImages = itemImages;
         this.tradeArea = tradeArea;
         this.shippingPrice = shippingPrice;
         this.member=member;
@@ -58,16 +63,30 @@ public class Item {
 
     // 아이템 생성
     public static Item createItem (ItemRequest req, Member member) {
+        if (member.getId() == null) {
+            throw new InvalidValueException(MEMBER_NOT_FOUND);
+        }
+
         return Item.builder()
                 .title(req.getTitle())
                 .content(req.getContent())
                 .price(req.getPrice())
                 .category(Category.fromString(req.getCategory()))
-                .imageInfos(new Images(req.getImageInfo()))
                 .tradeArea(req.getTradeArea())
                 .shippingPrice(ShippingPrice.convertShippingPrice(req.getShippingPrice()))
                 .member(member)
                 .build();
+    }
+
+    // 아이템 이미지 생성
+    public void createImages(ItemRequest req, Item item) {
+        List<ItemImage> itemImage = req.getItemImages();
+
+        for (ItemImage info : itemImage) {
+            info.updateItem(item);
+        }
+
+        itemImages = new ItemImages(itemImage);
     }
 
 }

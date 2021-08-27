@@ -1,16 +1,15 @@
 package com.trade.project.fixture;
 
-import com.trade.project.common.vo.ImageInfo;
-import com.trade.project.common.vo.Images;
+import com.trade.project.item.domain.ItemImage;
+import com.trade.project.item.domain.ItemImages;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ImageFixture {
-    public static Images IMAGE_LIST = new Images(Arrays.asList(new ImageInfo("url1","url1"),
-                                                            new ImageInfo("url2","url2")));
+    public static ItemImages IMAGE_LIST = new ItemImages(Arrays.asList(new ItemImage("url1","url1"),
+                                                            new ItemImage("url2","url2")));
 
-    public static List<ImageInfo> IMAGE_INFO_LIST = Arrays.asList(new ImageInfo("url1","url1"),
-                                                                    new ImageInfo("url2","url2"));
+    public static List<ItemImage> IMAGE_INFO_LIST = Arrays.asList(new ItemImage("url1","url1"),
+                                                                    new ItemImage("url2","url2"));
 }

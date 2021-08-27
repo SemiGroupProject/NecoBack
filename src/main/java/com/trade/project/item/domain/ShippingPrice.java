@@ -1,6 +1,9 @@
 package com.trade.project.item.domain;
 
+import com.trade.project.common.exceptions.InvalidValueException;
 import lombok.Getter;
+
+import static com.trade.project.common.exceptions.ErrorCode.SHIPPING_INVALID_VALUE;
 
 @Getter
 public enum ShippingPrice {
@@ -16,7 +19,7 @@ public enum ShippingPrice {
             case "no" :
                 return ShippingPrice.NO;
             default:
-                throw new IllegalArgumentException("wrong value on shipping price");
+               throw new InvalidValueException(SHIPPING_INVALID_VALUE);
         }
     }
 }

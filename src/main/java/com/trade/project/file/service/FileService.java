@@ -1,6 +1,6 @@
 package com.trade.project.file.service;
 
-import com.trade.project.common.vo.ImageInfo;
+import com.trade.project.item.domain.ItemImage;
 import com.trade.project.file.policy.FilePolicy;
 import com.trade.project.file.process.FileProcess;
 import com.trade.project.file.process.FileProcessFactory;
@@ -21,7 +21,7 @@ public class FileService {
     private final S3Deleter s3Deleter;
 
 
-    public ImageInfo uploadFiles(FilePolicy filePolicy, MultipartFile[] files)
+    public ItemImage uploadFiles(FilePolicy filePolicy, MultipartFile[] files)
             throws IOException, IllegalStateException, IllegalArgumentException {
         FileProcess fileProcess = FileProcessFactory.getFileProcess(filePolicy);
 

@@ -1,7 +1,7 @@
 package com.trade.project.file.service;
 
 import com.trade.project.ProjectApplicationTests;
-import com.trade.project.common.vo.ImageInfo;
+import com.trade.project.item.domain.ItemImage;
 import com.trade.project.file.policy.FilePolicy;
 import com.trade.project.file.process.FileProcess;
 import com.trade.project.file.process.S3FileProcess;
@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
@@ -65,7 +64,7 @@ class FileServiceTest extends ProjectApplicationTests {
         MockMultipartFile[] files = Arrays.copyOf(this.files, 1);
 
         //when
-        ImageInfo rep = fileProcess.uploadFile(files);
+        ItemImage rep = fileProcess.uploadFile(files);
 
         //then
         assertThat(rep.getFileName()).contains(files[0].getOriginalFilename());
@@ -83,7 +82,7 @@ class FileServiceTest extends ProjectApplicationTests {
         MockMultipartFile[] files = Arrays.copyOf(this.files, 1);
 
         //when
-        ImageInfo rep = fileProcess.uploadFile(files);
+        ItemImage rep = fileProcess.uploadFile(files);
 
         //then
         assertThat(rep.getFileName()).contains(files[0].getOriginalFilename());
@@ -101,7 +100,7 @@ class FileServiceTest extends ProjectApplicationTests {
         MockMultipartFile[] files = Arrays.copyOf(this.files, 1);
 
         //when
-        ImageInfo rep = fileProcess.uploadFile(files);
+        ItemImage rep = fileProcess.uploadFile(files);
 
         //then
         assertThat(rep.getFileName()).contains(files[0].getOriginalFilename());
@@ -120,7 +119,7 @@ class FileServiceTest extends ProjectApplicationTests {
         MockMultipartFile[] files = Arrays.copyOf(this.files, 1);
 
         //when
-        ImageInfo fileResultInfoDto = fileProcess.uploadFile(files);
+        ItemImage fileResultInfoDto = fileProcess.uploadFile(files);
 
         //then
         assertThatCode(() -> fileProcess.deleteFiles(fileResultInfoDto.getFileName()))
@@ -139,7 +138,7 @@ class FileServiceTest extends ProjectApplicationTests {
         MockMultipartFile[] files = Arrays.copyOf(this.files, 1);
 
         //when
-        ImageInfo fileResultInfoDto = fileProcess.uploadFile(files);
+        ItemImage fileResultInfoDto = fileProcess.uploadFile(files);
 
         //then
         assertThatCode(() -> fileProcess.deleteFiles(fileResultInfoDto.getFileName()))
@@ -158,7 +157,7 @@ class FileServiceTest extends ProjectApplicationTests {
         MockMultipartFile[] files = Arrays.copyOf(this.files, 1);
 
         //when
-        ImageInfo fileResultInfoDto = fileProcess.uploadFile(files);
+        ItemImage fileResultInfoDto = fileProcess.uploadFile(files);
 
         //then
         assertThatCode(() -> fileProcess.deleteFiles(fileResultInfoDto.getFileName()))

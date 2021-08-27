@@ -1,6 +1,5 @@
 package com.trade.project.member.domain;
 
-import com.trade.project.item.domain.Category;
 import com.trade.project.item.domain.Item;
 import com.trade.project.item.dto.ItemRequest;
 import com.trade.project.store.domain.Store;
@@ -9,9 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.springframework.util.StringUtils.hasText;
 
@@ -41,11 +37,19 @@ public class Member {
     @OneToOne(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Store store;
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-    private List<Item> items = new ArrayList<>();
-
     public Member(String accountId, String password, String name, String phoneNumber,
                   AddressInfo addressInfo) {
+        this.accountId = accountId;
+        this.password = password;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.addressInfo = addressInfo;
+        createStore();
+    }
+
+    public Member(Long id, String accountId, String password, String name, String phoneNumber,
+                  AddressInfo addressInfo) {
+        this.id=id;
         this.accountId = accountId;
         this.password = password;
         this.name = name;

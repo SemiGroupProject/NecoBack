@@ -1,6 +1,10 @@
 package com.trade.project.item.domain;
 
+import com.trade.project.common.exceptions.InvalidValueException;
+
 import java.util.Arrays;
+
+import static com.trade.project.common.exceptions.ErrorCode.CATEGORY_INVALID_VALUE;
 
 public enum Category {
     CLOTHES("의류",1),
@@ -29,14 +33,11 @@ public enum Category {
     }
 
     public static Category fromString(String categoryName) {
-        Arrays.stream(values()).filter(v->v.toString().equals(categoryName)).forEach(System.out::println);
-
         return Arrays.stream(values())
                 .filter(v->v.toString().equals(categoryName))
                 .findFirst()
                 .orElseThrow(() ->
-                        new IllegalArgumentException(
-                                String.format("잘못된 카테고리 : %s", categoryName)));
+                        new InvalidValueException(CATEGORY_INVALID_VALUE));
     }
 
     public String getCategoryName() {

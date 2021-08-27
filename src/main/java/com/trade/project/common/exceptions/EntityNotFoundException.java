@@ -1,4 +1,4 @@
-package com.trade.project.common.error.exceptions;
+package com.trade.project.common.exceptions;
 
 public class EntityNotFoundException extends BusinessException {
 
