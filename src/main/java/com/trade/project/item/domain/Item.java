@@ -79,11 +79,11 @@ public class Item {
     }
 
     // 아이템 이미지 생성
-    public void createImages(ItemRequest req, Item item) {
+    public void createImages(ItemRequest req) {
         List<ItemImage> itemImage = req.getItemImages();
 
         for (ItemImage info : itemImage) {
-            info.updateItem(item);
+            info.updateItem(this);
         }
 
         itemImages = new ItemImages(itemImage);

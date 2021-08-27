@@ -17,7 +17,7 @@ public class ItemService {
 
     public Long create(ItemRequest itemRequest, Member member) {
         Item item = member.createItem(itemRequest);
-        item.createImages(itemRequest,item);
+        item.createImages(itemRequest);
         itemRepository.save(item);
 
         log.debug("item Id : " + item.getId());

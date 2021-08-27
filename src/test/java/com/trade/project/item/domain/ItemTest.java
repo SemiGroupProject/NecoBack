@@ -42,7 +42,7 @@ class ItemTest {
     @Test
     @DisplayName("아이템 이미지를 생성한다.")
     void createImages() {
-        ITEM1.createImages(ITEM_REQUEST, ITEM1);
+        ITEM1.createImages(ITEM_REQUEST);
 
         assertAll(
                 () -> assertThat(IMAGE_INFO_LIST.get(0).getUrl()).isEqualTo(ITEM1.getItemImages().getImages().get(0).getUrl()),
