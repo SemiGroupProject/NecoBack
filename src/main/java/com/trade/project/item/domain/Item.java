@@ -86,7 +86,7 @@ public class Item {
             info.updateItem(this);
         }
 
-        itemImages = new ItemImages(itemImage);
+        itemImages = ItemImages.of(itemImage);
     }
 
 }

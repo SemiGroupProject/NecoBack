@@ -4,6 +4,9 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+src/main/resources/static/
+BOOT-INF/
+
 
 ### STS ###
 .apt_generated
@@ -39,4 +42,6 @@ out/
 
 #### yml ignore ####
 src/main/resources/application.yml
-src/main/resources/aws.yml
+src/main/resources/application-dev.yml
+src/main/resources/application-local.yml
+src/test/resources/application-test.yml

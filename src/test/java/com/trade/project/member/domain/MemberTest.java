@@ -7,8 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.trade.project.fixture.ItemFixture.*;
-import static com.trade.project.fixture.MemberFixture.CHANGE_PASSWORD;
-import static com.trade.project.fixture.MemberFixture.MEMBER1;
+import static com.trade.project.fixture.MemberFixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -71,7 +70,7 @@ class MemberTest {
         // ImageFixture.아이템_요청
 
         // when : 회원이 요청받은 아이템을 등록한다
-        Item item = MEMBER1.createItem(ITEM_REQUEST);
+        Item item = MEMBER_ID.createItem(ITEM_REQUEST);
 
         // then
         assertAll(

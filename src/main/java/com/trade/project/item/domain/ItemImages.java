@@ -39,6 +39,10 @@ public class ItemImages {
                 .collect(toUnmodifiableList());
     }
 
+    public static ItemImages of(List<ItemImage> images) {
+        return new ItemImages(images);
+    }
+
     public static ItemImages of(ItemImage... itemImages) {
         return new ItemImages(Arrays.asList(itemImages));
     }

@@ -28,5 +28,23 @@ public class ItemFixture {
             .shippingPrice("yes")
             .build();
 
-
+    public static String ITEM_REQUEST_JSON = "{\n" +
+            "    \"title\":\"item01\",\n" +
+            "    \"content\":\"content\",\n" +
+            "    \"price\":1000,\n" +
+            "    \"category\":\"BOOK\",\n" +
+            "    \"itemImages\":\n" +
+            "  \t[\n" +
+            "      {\n" +
+            "        \"url\":\"url\",\n" +
+            "        \"fileName\":\"fileName\"\n" +
+            "    \t}\n" +
+            "      ,{\n" +
+            "        \"url\":\"url2\",\n" +
+            "        \"fileName\":\"fileName2\"\n" +
+            "      }\n" +
+            "    ],\n" +
+            "    \"tradeArea\":\"tradeArea\",\n" +
+            "    \"shippingPrice\":\"no\"\n" +
+            "}";
 }
