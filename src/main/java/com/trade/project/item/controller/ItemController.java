@@ -33,7 +33,7 @@ public class ItemController {
         Long id = itemService.create(request, member);
 
         return ResponseEntity
-        .created(URI.create("/API"+ITEM+"/"+id))
+        .created(URI.create(ITEM+"/"+id))
         .body(ApiUtils.successResponse(id));
     }
 
