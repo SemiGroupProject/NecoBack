@@ -7,4 +7,8 @@ public interface MemberService {
     boolean isExistAccountId(String accountId);
 
     void updateProfile(Member member, ProfileRequest request);
+
+    LoginResponse signUp(LoginRequest request);
+
+    void join(JoinRequest request);
 }

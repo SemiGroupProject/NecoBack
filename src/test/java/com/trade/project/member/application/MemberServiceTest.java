@@ -7,13 +7,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-import static com.trade.project.fixture.MemberFixture.MEMBER1;
-import static com.trade.project.fixture.MemberFixture.PROFILE_REQUEST;
+import static com.trade.project.fixture.MemberFixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.when;
 
@@ -21,11 +22,13 @@ import static org.mockito.Mockito.when;
 class MemberServiceTest {
 
     @Mock private MemberRepository memberRepository;
+    @Mock private LoginInfoValidator loginInfoValidator;
+    @Mock private PasswordEncoder passwordEncoder;
     private MemberService memberService;
 
     @BeforeEach
     void setUp() {
-        memberService = new MemberServiceImpl(memberRepository);
+        memberService = new MemberServiceImpl(memberRepository, loginInfoValidator, passwordEncoder);
     }
 
     @DisplayName("아이디 확인: 존재x")
@@ -51,9 +54,20 @@ class MemberServiceTest {
 
         assertAll(
                 () -> assertThat(MEMBER1.getPhoneNumber()).isEqualTo(PROFILE_REQUEST.getPhoneNumber()),
-                () -> assertThat(MEMBER1.getAddressInfo().getZipNo()).isEqualTo(PROFILE_REQUEST.getZipCode()),
-                () -> assertThat(MEMBER1.getAddressInfo().getStreet()).isEqualTo(PROFILE_REQUEST.getStreet())
+                () -> assertThat(MEMBER1.getAddressInfo().getZipNo())
+                        .isEqualTo(PROFILE_REQUEST.getAddressInfo().getZipNo())
         );
+    }
+
+    @DisplayName("로그인")
+    @Test
+    void login()  {
+        when(memberRepository.findOptionalByAccountId(any())).thenReturn(Optional.of(MEMBER1));
+        when(loginInfoValidator.validateInfo(any(), any())).thenReturn(LOGIN_RESPONSE);
+
+        LoginResponse loginResponse = memberService.signUp(LOGIN_REQUEST);
+
+        assertThat(loginResponse.getData()).isEqualTo(JWT_TOKEN);
     }
 
 }
