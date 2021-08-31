@@ -11,4 +11,5 @@ public interface MemberService {
     LoginResponse signUp(LoginRequest request);
 
     void join(JoinRequest request);
+
 }

@@ -14,7 +14,6 @@ public class NecoResponse <T> {
     private T result;
     private ErrorResponse error;
 
-    @Builder
     public NecoResponse(boolean success, T result, ErrorResponse error) {
         this.success = success;
         this.result = result;
