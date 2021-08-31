@@ -1,8 +1,3 @@
-ifndef::snippets[]
-:snippets: ./build/generated-snippets
-endif::[]
-
-
 = NECONICO API Guide
 :doctype: book
 :icons: font
@@ -10,6 +5,7 @@ endif::[]
 :toc: left
 :toclevels: 2
 :sectlinks:
+
 
 [[introduction]]
 == 소개
@@ -50,23 +46,4 @@ NecoNico API 문서 입니다.
 [[rest_api_doc]]
 = APIs
 '''
-== #*_ITEM API_*#
-=== *상품 등록 [post]*
-
-==== 설명
-상품 정보를 등록한다
-
-==== Request 필드
-include::{snippets}/item-controller-test/create-item/request-fields.adoc[]
-
-==== Request 예시
-include::{snippets}/item-controller-test/create-item/http-request.adoc[]
-
-==== Response 필드
-include::{snippets}/item-controller-test/create-item/response-fields.adoc[]
-
-==== Response 예시
-include::{snippets}/item-controller-test/create-item/http-response.adoc[]
-
-
-'''
+include::{docdir}/src/docs/asciidoc/api/item.adoc[]
