@@ -1,6 +1,8 @@
 package com.trade.project.item.domain;
 
 import com.trade.project.common.exceptions.InvalidValueException;
+import com.trade.project.item.domain.enums.Category;
+import com.trade.project.item.domain.enums.ShippingPrice;
 import com.trade.project.item.dto.ItemRequest;
 import com.trade.project.member.domain.Member;
 import lombok.*;

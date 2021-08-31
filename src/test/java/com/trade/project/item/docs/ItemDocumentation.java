@@ -28,4 +28,13 @@ public class ItemDocumentation {
             fieldWithPath("error").type(JsonFieldType.OBJECT).description("에러").optional(),
     };
 
+    public static final FieldDescriptor[] CATEGORY_GET_RES = {
+            fieldWithPath("success").type(JsonFieldType.BOOLEAN).description("성공, 실패 여부"),
+            fieldWithPath("result.[]").type(JsonFieldType.ARRAY).description("결과값 : 카테고리 정보"),
+            fieldWithPath("result[].id").type(JsonFieldType.NUMBER).description("카테고리 아이디"),
+            fieldWithPath("result[].categoryName").type(JsonFieldType.STRING).description("카테고리 제목"),
+            fieldWithPath("result[].level").type(JsonFieldType.NUMBER).description("카테고리 레벨 (계층)"),
+            fieldWithPath("result[].parent").type(JsonFieldType.NUMBER).description("참조 부모 id (최상위시 0)"),
+            fieldWithPath("error").type(JsonFieldType.OBJECT).description("에러").optional(),
+    };
 }

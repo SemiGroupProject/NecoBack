@@ -24,6 +24,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
@@ -39,15 +41,34 @@ public abstract class ProjectApplicationTests {
     protected MockMvc mockMvc;
     protected RestDocumentationResultHandler document;
 
+    private final String host = "http://localhost:8080";
+    private final Pattern hostPattern = Pattern.compile("(http[s]?)://([\\w-.]+)([:]([\\d]+))?");
+
+
     @BeforeEach
     public void setUp(WebApplicationContext webApplicationContext, RestDocumentationContextProvider restDocumentation) {
+
+        Matcher hostMatcher = hostPattern.matcher(host);
+
+        String ip = null;
+        String port = null;
+
+        if (hostMatcher.matches()) {
+            ip = hostMatcher.group(2);
+            port = hostMatcher.group(4);
+        }
+
         this.document = document(
                 "{class-name}/{method-name}",
                 preprocessRequest(prettyPrint()),
                 preprocessResponse(prettyPrint())
         );
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
-                .apply(documentationConfiguration(restDocumentation))
+                .apply(documentationConfiguration(restDocumentation)
+                        .uris()
+                        .withHost(ip)
+                        .withPort(toInt(port))
+                )
                 .alwaysDo(document)
                 .build();
     }
@@ -75,5 +96,22 @@ public abstract class ProjectApplicationTests {
     }
     protected String toJson(Object request) throws JsonProcessingException {
         return new ObjectMapper().writeValueAsString(request);
+    }
+
+    public static int toInt(String str) {
+        return toInt(str, 0);
+    }
+
+
+    public static int toInt(String str, int defaultValue) {
+        if (str == null) {
+            return defaultValue;
+        } else {
+            try {
+                return Integer.parseInt(str);
+            } catch (NumberFormatException var3) {
+                return defaultValue;
+            }
+        }
     }
 }

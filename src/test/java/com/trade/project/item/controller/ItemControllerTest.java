@@ -10,8 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
 import static com.trade.project.fixture.ItemFixture.ITEM_REQUEST_JSON;
-import static com.trade.project.item.docs.ItemDocumentation.ITEM_POST_REQ;
-import static com.trade.project.item.docs.ItemDocumentation.ITEM_POST_RES;
+import static com.trade.project.item.docs.ItemDocumentation.*;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -38,6 +37,19 @@ class ItemControllerTest extends ProjectApplicationTests {
                         customResponseFields(ITEM_POST_RES)
                 ));
 
+    }
+
+    @Test
+    @DisplayName("카테고리 목록을 가져온다")
+    void findCategory() throws Exception {
+        this.mockMvc.perform(get(NecoAPI.ITEM+"/category")
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document.document(
+                        customResponseFields(CATEGORY_GET_RES)
+                )
+        );
     }
 
 }

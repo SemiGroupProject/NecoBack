@@ -1,11 +1,15 @@
-package com.trade.project.item.domain;
+package com.trade.project.item.domain.enums;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.trade.project.common.exceptions.InvalidValueException;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 import static com.trade.project.common.exceptions.ErrorCode.CATEGORY_INVALID_VALUE;
 
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Category {
     CLOTHES(1,"의류",1,0),
     MEN_CLOTHES(2,"남성의류",2,1),
@@ -55,4 +59,5 @@ public enum Category {
     }
 
     public int getParent() {return parent;}
+
 }

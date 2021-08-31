@@ -1,4 +1,4 @@
-package com.trade.project.item.domain;
+package com.trade.project.item.domain.enums;
 
 import com.trade.project.common.exceptions.InvalidValueException;
 import lombok.Getter;
