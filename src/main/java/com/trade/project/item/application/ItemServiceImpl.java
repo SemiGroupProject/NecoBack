@@ -1,8 +1,7 @@
-package com.trade.project.item.service;
+package com.trade.project.item.application;
 
 import com.trade.project.item.domain.Item;
 import com.trade.project.item.domain.ItemRepository;
-import com.trade.project.item.dto.ItemRequest;
 import com.trade.project.member.domain.Member;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor(access = AccessLevel.PUBLIC)
 @Service
 @Slf4j
-public class ItemService {
+public class ItemServiceImpl implements ItemService{
     private final ItemRepository itemRepository;
 
     public Long create(ItemRequest itemRequest, Member member) {

@@ -1,4 +1,4 @@
-package com.trade.project.item.dto;
+package com.trade.project.item.application;
 
 import com.trade.project.item.domain.ItemImage;
 import com.trade.project.item.domain.ItemImages;

@@ -4,7 +4,7 @@ package com.trade.project.fixture;
 import com.trade.project.item.domain.enums.Category;
 import com.trade.project.item.domain.Item;
 import com.trade.project.item.domain.enums.ShippingPrice;
-import com.trade.project.item.dto.ItemRequest;
+import com.trade.project.item.application.ItemRequest;
 
 public class ItemFixture {
 

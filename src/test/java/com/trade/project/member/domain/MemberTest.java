@@ -1,8 +1,6 @@
 package com.trade.project.member.domain;
 
-import com.trade.project.fixture.ItemFixture;
 import com.trade.project.item.domain.Item;
-import com.trade.project.item.dto.ItemRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

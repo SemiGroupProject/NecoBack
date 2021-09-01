@@ -1,7 +1,7 @@
 package com.trade.project.member.domain;
 
 import com.trade.project.item.domain.Item;
-import com.trade.project.item.dto.ItemRequest;
+import com.trade.project.item.application.ItemRequest;
 import com.trade.project.store.domain.Store;
 import lombok.AccessLevel;
 import lombok.Getter;

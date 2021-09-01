@@ -1,7 +1,7 @@
 package com.trade.project.item.domain;
 
 import com.trade.project.common.exceptions.InvalidValueException;
-import com.trade.project.item.dto.ItemRequest;
+import com.trade.project.item.application.ItemRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

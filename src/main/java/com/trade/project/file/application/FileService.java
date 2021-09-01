@@ -1,4 +1,4 @@
-package com.trade.project.file.service;
+package com.trade.project.file.application;
 
 import com.trade.project.item.domain.ItemImage;
 import com.trade.project.file.policy.FilePolicy;
