@@ -7,6 +7,7 @@ import com.trade.project.item.domain.enums.Category;
 import com.trade.project.item.application.ItemRequest;
 import com.trade.project.member.domain.AddressInfo;
 import com.trade.project.member.domain.Member;
+import com.trade.project.security.filter.LoginMember;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -19,17 +20,14 @@ import static com.trade.project.common.constant.NecoAPI.ITEM;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(ITEM)
+@RequestMapping("/api")
 @Slf4j
 public class ItemController {
 
     private final ItemService itemService;
 
-    @PostMapping
-    public ResponseEntity<NecoResponse<Long>> create(@RequestBody ItemRequest request){
-        // 임시 member
-        Member member = new Member("user01","1234","name","phNumber",new AddressInfo(123,"1234"));
-
+    @PostMapping(ITEM)
+    public ResponseEntity<NecoResponse<Long>> create(@LoginMember Member member, @RequestBody ItemRequest request){
         Long id = itemService.create(request, member);
 
         return ResponseEntity

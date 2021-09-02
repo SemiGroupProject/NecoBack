@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("Item-Controller-Test")
 class ItemControllerTest extends ProjectApplicationTests {
 
+    // todo : security 설정!!헤더에 토큰넣기
     @Test
     @DisplayName("상품을 생성한다.")
     void createItem() throws Exception {
@@ -42,7 +43,7 @@ class ItemControllerTest extends ProjectApplicationTests {
     @Test
     @DisplayName("카테고리 목록을 가져온다")
     void findCategory() throws Exception {
-        this.mockMvc.perform(get(NecoAPI.ITEM+"/category")
+        this.mockMvc.perform(get("/api/category")
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
