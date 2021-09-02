@@ -1,5 +1,6 @@
 package com.trade.project.common.exceptions;
 
+
 public enum ErrorCode {
     // COMMON ERROR
     INTERNAL_SERVER_ERROR(404, "C_001", "서버가 연결되어있지 않습니다."),
