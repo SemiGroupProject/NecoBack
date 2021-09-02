@@ -2,7 +2,6 @@ package com.trade.project.member.domain;
 
 import com.trade.project.store.domain.Store;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
