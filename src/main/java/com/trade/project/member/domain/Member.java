@@ -1,7 +1,5 @@
 package com.trade.project.member.domain;
 
-import com.trade.project.item.application.ItemRequest;
-import com.trade.project.item.domain.Item;
 import com.trade.project.store.domain.Store;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -77,10 +75,5 @@ public class Member {
     // 회원 자신의 스토어 생성
     private void createStore() {
         this.store = Store.createStore(this);
-    }
-
-    // Item 등록
-    public Item createItem(ItemRequest item){
-        return Item.createItem(item,this);
     }
 }

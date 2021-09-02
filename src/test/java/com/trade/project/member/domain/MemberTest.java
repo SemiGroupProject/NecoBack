@@ -1,16 +1,17 @@
 package com.trade.project.member.domain;
 
-import com.trade.project.item.domain.Item;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.trade.project.fixture.ItemFixture.*;
-import static com.trade.project.fixture.MemberFixture.*;
+import static com.trade.project.fixture.MemberFixture.CHANGE_PASSWORD;
+import static com.trade.project.fixture.MemberFixture.MEMBER1;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class MemberTest {
+
+
 
     @DisplayName("비밀번호 변경")
     @Test
@@ -59,22 +60,5 @@ class MemberTest {
         assertThatThrownBy(() -> MEMBER1.updateAddressInfo(address))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("There is no address info to change");
-    }
-
-    @Test
-    @DisplayName("회원이 새로운 아이템(상품)을 등록한다")
-    void createItem() {
-        // given :  아이템 요청이 들어온다
-        // ImageFixture.아이템_요청
-
-        // when : 회원이 요청받은 아이템을 등록한다
-        Item item = MEMBER1.createItem(ITEM_REQUEST);
-
-        // then
-        assertAll(
-                () -> assertThat(ITEM1.getTitle()).isEqualTo(item.getTitle()),
-                () -> assertThat(ITEM1.getContent()).isEqualTo(item.getContent())
-        );
-
     }
 }
