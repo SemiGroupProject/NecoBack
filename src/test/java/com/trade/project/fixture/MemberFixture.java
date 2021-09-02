@@ -32,7 +32,11 @@ public class MemberFixture {
             "4225",
             "010-3212-3242",
             new AddressInfo(24241,
+<<<<<<< HEAD
+                    "서울시 송파구")
+=======
             "서울시 송파구")
+>>>>>>> ce7cb6ad713304b47209be09cb15ad38f6d06fb9
     );
 
     public static LoginRequest LOGIN_REQUEST = new LoginRequest("user1", "1234");
@@ -40,4 +44,8 @@ public class MemberFixture {
     public static String JWT_TOKEN = "jwt-data";
 
     public static LoginResponse LOGIN_RESPONSE = new LoginResponse(JWT_TOKEN);
+<<<<<<< HEAD
+}
+=======
  }
+>>>>>>> ce7cb6ad713304b47209be09cb15ad38f6d06fb9

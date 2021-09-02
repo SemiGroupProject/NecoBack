@@ -1,0 +1,49 @@
+= NECONICO API Guide
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+
+[[introduction]]
+== 소개
+NecoNico API 문서 입니다.
+
+=== *Common Response*
+공통 응답
+|===
+|필드명|타입|설명
+
+|`+success+`
+|`+Boolean+`
+|API 호출 성공 여부
+
+|`+result+`
+|`+Object+`
+|API 응답 결과 리턴 (실패시 null 리턴)
+
+|`+error+`
+|`+Object+`
+| 에러 리턴 (성공시 null 리턴)
+
+|`+error.message+`
+|`+String+`
+| 에러 메세지
+
+|`+error.errors+`
+|`+Array+`
+|바인딩 에러 발생시 추가 에러 정보
+
+|`+error.code+`
+|`+String+`
+|에러코드
+
+
+|===
+
+[[rest_api_doc]]
+= APIs
+'''
+include::{docdir}/src/docs/asciidoc/api/item.adoc[]

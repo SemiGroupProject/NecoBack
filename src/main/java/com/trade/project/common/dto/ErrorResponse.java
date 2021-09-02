@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> ce7cb6ad713304b47209be09cb15ad38f6d06fb9
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ErrorResponse {
@@ -30,7 +34,11 @@ public class ErrorResponse {
     public ErrorResponse(ErrorCode code) {
         this.message = code.getMessage();
         this.code = code.getCode();
+<<<<<<< HEAD
+        this.errors = new ArrayList<>();
+=======
         this.errors = new ArrayList<>(); //todo 기본 빈 리스트를 선언해주는 이유가?
+>>>>>>> ce7cb6ad713304b47209be09cb15ad38f6d06fb9
     }
 
 
@@ -83,4 +91,8 @@ public class ErrorResponse {
                     .collect(Collectors.toList());
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ce7cb6ad713304b47209be09cb15ad38f6d06fb9
