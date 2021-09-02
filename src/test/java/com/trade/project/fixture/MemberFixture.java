@@ -6,6 +6,7 @@ import com.trade.project.member.domain.Member;
 public class MemberFixture {
     public static Member MEMBER1 =
             new Member(
+
                     "user1",
                     "1234",
                     "user1",
@@ -15,16 +16,6 @@ public class MemberFixture {
 
     public static Member MEMBER2 =
             new Member(
-                    "user2",
-                    "5324",
-                    "user2",
-                    "010-2222-2222",
-                    new AddressInfo(42321, "서울시 송파구")
-            );
-
-    public static Member MEMBER_ID =
-            new Member(
-                    1L,
                     "user2",
                     "5324",
                     "user2",

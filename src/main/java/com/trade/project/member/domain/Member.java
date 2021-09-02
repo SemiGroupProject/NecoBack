@@ -1,7 +1,7 @@
 package com.trade.project.member.domain;
 
-import com.trade.project.item.domain.Item;
 import com.trade.project.item.application.ItemRequest;
+import com.trade.project.item.domain.Item;
 import com.trade.project.store.domain.Store;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -39,17 +39,6 @@ public class Member {
 
     public Member(String accountId, String password, String name, String phoneNumber,
                   AddressInfo addressInfo) {
-        this.accountId = accountId;
-        this.password = password;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.addressInfo = addressInfo;
-        createStore();
-    }
-
-    public Member(Long id, String accountId, String password, String name, String phoneNumber,
-                  AddressInfo addressInfo) {
-        this.id=id;
         this.accountId = accountId;
         this.password = password;
         this.name = name;

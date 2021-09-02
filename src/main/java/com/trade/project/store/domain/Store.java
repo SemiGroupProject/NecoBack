@@ -1,6 +1,6 @@
 package com.trade.project.store.domain;
 
-import com.trade.project.common.vo.ImageInfo;
+import com.trade.project.common.ImageInfo;
 import com.trade.project.member.domain.Member;
 import com.trade.project.store.application.StoreNameGenerator;
 import lombok.AccessLevel;

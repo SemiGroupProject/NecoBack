@@ -28,7 +28,7 @@ public class ItemController {
     @PostMapping
     public ResponseEntity<NecoResponse<Long>> create(@RequestBody ItemRequest request){
         // 임시 member
-        Member member = new Member(1L, "user01","1234","name","phNumber",new AddressInfo(123,"1234"));
+        Member member = new Member("user01","1234","name","phNumber",new AddressInfo(123,"1234"));
 
         Long id = itemService.create(request, member);
 

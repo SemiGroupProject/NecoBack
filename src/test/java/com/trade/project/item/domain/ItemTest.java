@@ -9,7 +9,7 @@ import static com.trade.project.common.exceptions.ErrorCode.CATEGORY_INVALID_VAL
 import static com.trade.project.fixture.ImageFixture.IMAGE_INFO_LIST;
 import static com.trade.project.fixture.ItemFixture.ITEM1;
 import static com.trade.project.fixture.ItemFixture.ITEM_REQUEST;
-import static com.trade.project.fixture.MemberFixture.MEMBER_ID;
+import static com.trade.project.fixture.MemberFixture.MEMBER1;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -19,7 +19,7 @@ class ItemTest {
     @Test
     @DisplayName("Request 값으로 아이템을 만든다.")
     void createItem() {
-        Item item = Item.createItem(ITEM_REQUEST,MEMBER_ID);
+        Item item = Item.createItem(ITEM_REQUEST,MEMBER1);
 
         assertAll(
                 ()->assertThat(ITEM1.getTitle()).isEqualTo(item.getTitle()),
@@ -34,7 +34,7 @@ class ItemTest {
                 .category("ERROR")
                 .build();
 
-        assertThatThrownBy(() -> Item.createItem(request,MEMBER_ID))
+        assertThatThrownBy(() -> Item.createItem(request,MEMBER1))
                 .isInstanceOf(InvalidValueException.class)
                 .hasMessage(CATEGORY_INVALID_VALUE.getMessage());
     }

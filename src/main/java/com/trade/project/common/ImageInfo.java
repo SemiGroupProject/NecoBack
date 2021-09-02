@@ -1,4 +1,4 @@
-package com.trade.project.common.vo;
+package com.trade.project.common;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -22,5 +22,4 @@ public class ImageInfo {
         this.url = url;
         this.fileName = fileName;
     }
-
 }
