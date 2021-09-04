@@ -7,9 +7,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 
+import javax.transaction.Transactional;
+
 import static com.trade.project.fixture.MemberFixture.*;
 import static com.trade.project.member.docs.MemberDocumentation.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.put;
+import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -19,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class MemberControllerTest extends ProjectApplicationTests {
 
     @DisplayName("회원가입")
+    @Transactional
     @Test
     void joinMember() throws Exception{
         mockMvc.perform(post("/api/join")
@@ -39,6 +43,9 @@ class MemberControllerTest extends ProjectApplicationTests {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andDo(document.document(
+                        requestParameters(
+                                parameterWithName("accountId").description("중복 확인할 아이디")
+                        ),
                         customResponseFields(MEMBER_GET_DUPLICATE_RES))
                 );
 
@@ -46,6 +53,7 @@ class MemberControllerTest extends ProjectApplicationTests {
 
     //TODO: 로그인 후 유저정보 변경.. 추후 변경해야함
     @DisplayName("유저 정보 변경")
+    @Transactional
     @Test
     void updateMember() throws Exception {
         mockMvc.perform(post("/api/join")
@@ -83,6 +91,7 @@ class MemberControllerTest extends ProjectApplicationTests {
     }
 
     @DisplayName("유저 정보 반환")
+    @Transactional
     @Test
     void getProfile() throws Exception {
         mockMvc.perform(post("/api/join")
