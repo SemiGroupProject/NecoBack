@@ -29,7 +29,6 @@ public class MemberFixture {
     public static String CHANGE_PASSWORD = "3532gg32r";
 
     public static ProfileRequest PROFILE_REQUEST = new ProfileRequest(
-            "4225",
             "010-3212-3242",
             new AddressInfo(24241,
                     "서울시 송파구")
@@ -40,4 +39,33 @@ public class MemberFixture {
     public static String JWT_TOKEN = "jwt-data";
 
     public static LoginResponse LOGIN_RESPONSE = new LoginResponse(JWT_TOKEN);
+
+    /**
+     *  회원 LOGIN MVC TEST JSON
+     */
+    public static String MEMBER_JOIN_ACCOUNT_ID = "junco";
+    public static String MEMBER_JOIN_PASSWORD = "1234";
+
+    public static String MEMBER_LOGIN_JSON = "{\n" +
+            "\"accountId\"" + ":" + "\"" + MEMBER_JOIN_ACCOUNT_ID + "\""
+            + "," + "\"password\"" + ":" + "\"" + MEMBER_JOIN_PASSWORD + "\"" + "}";
+
+    public static String MEMBER_JOIN_JSON = "{\n" +
+            "    \"accountId\" : \"junco\",\n" +
+            "    \"password\" : \"1234\",\n" +
+            "    \"name\" : \"이택민\",\n" +
+            "    \"phoneNumber\" : \"010-1111-1111\",\n" +
+            "    \"addressInfo\" : {\n" +
+            "        \"zipNo\" : 1242,\n" +
+            "        \"street\" : \"서울시\"\n" +
+            "    }\n" +
+            "}";
+
+    public static String MEMBER_PROFILE_UPDATE_JSON = "{\n" +
+            "    \"phoneNumber\" : \"010-2222-2222\",\n" +
+            "    \"addressInfo\" : {\n" +
+            "        \"zipNo\" : 42423,\n" +
+            "        \"street\" : \"경기도\"\n" +
+            "    }\n" +
+            "}";
 }
