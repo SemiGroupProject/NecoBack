@@ -1,13 +1,13 @@
 package com.trade.project.member.presentation;
 
-import com.trade.project.MemberLoginApplicationTests;
+import com.trade.project.ProjectApplicationTests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MvcResult;
 
-import static com.trade.project.fixture.MemberFixture.MEMBER_JOIN_JSON;
-import static com.trade.project.fixture.MemberFixture.MEMBER_PROFILE_UPDATE_JSON;
+import static com.trade.project.fixture.MemberFixture.*;
 import static com.trade.project.member.docs.MemberDocumentation.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @DisplayName("Member-Controller-Test")
-class MemberControllerTest extends MemberLoginApplicationTests {
+class MemberControllerTest extends ProjectApplicationTests {
 
     @DisplayName("회원가입")
     @Test
@@ -48,7 +48,28 @@ class MemberControllerTest extends MemberLoginApplicationTests {
     @DisplayName("유저 정보 변경")
     @Test
     void updateMember() throws Exception {
+        mockMvc.perform(post("/api/join")
+                        .content(MEMBER_JOIN_JSON_2)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isCreated());
 
+        MvcResult mvcResult = mockMvc
+                .perform(post("/api/login").contentType(MediaType.APPLICATION_JSON)
+                        .content(MEMBER_LOGIN_JSON_2))
+                .andDo(print())
+                .andExpect(status().isOk()).andReturn();
+
+        String response = mvcResult.getResponse().getContentAsString();
+
+
+        int target = response.indexOf("\"data\"" + ":");
+
+        int lastIndex = response.indexOf("}", target);
+
+        String jwtTokenData = response.substring(target + 8, lastIndex - 1);
+
+        // 회원정보 변경
         mockMvc.perform(put("/api/member").header(HttpHeaders.AUTHORIZATION,
                                 "Bearer " + jwtTokenData)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -64,6 +85,28 @@ class MemberControllerTest extends MemberLoginApplicationTests {
     @DisplayName("유저 정보 반환")
     @Test
     void getProfile() throws Exception {
+        mockMvc.perform(post("/api/join")
+                        .content(MEMBER_JOIN_JSON_3)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isCreated());
+
+        MvcResult mvcResult = mockMvc
+                .perform(post("/api/login").contentType(MediaType.APPLICATION_JSON)
+                        .content(MEMBER_LOGIN_JSON_3))
+                .andDo(print())
+                .andExpect(status().isOk()).andReturn();
+
+        String response = mvcResult.getResponse().getContentAsString();
+
+
+        int target = response.indexOf("\"data\"" + ":");
+
+        int lastIndex = response.indexOf("}", target);
+
+        String jwtTokenData = response.substring(target + 8, lastIndex - 1);
+
+        // 회원정보 반환
         mockMvc.perform(get("/api/member")
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + jwtTokenData)
                 .contentType(MediaType.ALL))

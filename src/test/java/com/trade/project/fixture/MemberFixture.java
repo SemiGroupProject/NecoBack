@@ -46,15 +46,47 @@ public class MemberFixture {
     public static String MEMBER_JOIN_ACCOUNT_ID = "junco";
     public static String MEMBER_JOIN_PASSWORD = "1234";
 
-    public static String MEMBER_LOGIN_JSON = "{\n" +
+    public static String MEMBER_LOGIN_JSON_1 = "{\n" +
             "\"accountId\"" + ":" + "\"" + MEMBER_JOIN_ACCOUNT_ID + "\""
             + "," + "\"password\"" + ":" + "\"" + MEMBER_JOIN_PASSWORD + "\"" + "}";
+
+    public static String MEMBER_LOGIN_JSON_2 = "{\n" +
+            "\"accountId\"" + ":" + "\"" + "xorals2" + "\""
+            + "," + "\"password\"" + ":" + "\"" + "1234" + "\"" + "}";
+
+    public static String MEMBER_LOGIN_JSON_3 = "{\n" +
+            "\"accountId\"" + ":" + "\"" + "xorals3" + "\""
+            + "," + "\"password\"" + ":" + "\"" + "1234" + "\"" + "}";
+
 
     public static String MEMBER_JOIN_JSON = "{\n" +
             "    \"accountId\" : \"junco\",\n" +
             "    \"password\" : \"1234\",\n" +
             "    \"name\" : \"이택민\",\n" +
             "    \"phoneNumber\" : \"010-1111-1111\",\n" +
+            "    \"addressInfo\" : {\n" +
+            "        \"zipNo\" : 1242,\n" +
+            "        \"street\" : \"서울시\"\n" +
+            "    }\n" +
+            "}";
+
+    public static String MEMBER_JOIN_JSON_2 = "{\n" +
+            "    \"accountId\" : \"xorals2\",\n" +
+            "    \"password\" : \"1234\",\n" +
+            "    \"name\" : \"이택민2\",\n" +
+            "    \"phoneNumber\" : \"010-2222-2222\",\n" +
+            "    \"addressInfo\" : {\n" +
+            "        \"zipNo\" : 1242,\n" +
+            "        \"street\" : \"서울시\"\n" +
+            "    }\n" +
+            "}";
+
+
+    public static String MEMBER_JOIN_JSON_3 = "{\n" +
+            "    \"accountId\" : \"xorals3\",\n" +
+            "    \"password\" : \"1234\",\n" +
+            "    \"name\" : \"이택민3\",\n" +
+            "    \"phoneNumber\" : \"010-2222-2222\",\n" +
             "    \"addressInfo\" : {\n" +
             "        \"zipNo\" : 1242,\n" +
             "        \"street\" : \"서울시\"\n" +
