@@ -12,7 +12,7 @@ endif::[]
 include::{snippets}/member-controller-test/join-member/request-fields.adoc[]
 
 ==== Request 예시
-include::{snippets}/member-controller-test/join-member/request-body.adoc[]
+include::{snippets}/member-controller-test/join-member/http-request.adoc[]
 
 ==== Response 예시
 include::{snippets}/member-controller-test/join-member/http-response.adoc[]
@@ -44,6 +44,9 @@ include::{snippets}/member-controller-test/update-member/request-fields.adoc[]
 
 ==== Request 예시
 include::{snippets}/member-controller-test/update-member/http-request.adoc[]
+
+==== Response 예시
+include::{snippets}/member-controller-test/update-member/http-response.adoc[]
 
 === *회원 정보 조회 [get]*
 

@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @DisplayName("Common-Controller-Test")
-class CommonController extends ProjectApplicationTests {
+class CommonControllerTest extends ProjectApplicationTests {
     @Test
     @DisplayName("에러를 발생시킨다.")
     void makeError() throws Exception {

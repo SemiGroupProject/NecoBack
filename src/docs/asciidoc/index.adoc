@@ -1,3 +1,7 @@
+ifndef::snippets[]
+:snippets: {docdir}/build/generated-snippets
+endif::[]
+
 = NECONICO API Guide
 :doctype: book
 :icons: font
@@ -21,7 +25,7 @@ NecoNico API 문서 입니다.
 |API 호출 성공 여부
 
 |`+result+`
-|`+Object+`
+|`+반환값에 따라 다름+`
 |API 응답 결과 리턴 (실패시 null 리턴)
 
 |`+error+`
@@ -39,9 +43,60 @@ NecoNico API 문서 입니다.
 |`+error.code+`
 |`+String+`
 |에러코드
+|===
 
+
+=== *Error Code*
+NecoNico에서 사용되는 공통 에러코드는 다음과 같다.
 
 |===
+|에러 타입|번호|에러 코드|메세지
+
+|`+INTERNAL_SERVER_ERROR+`
+|`+404+`
+|C_001
+|서버가 연결되어있지 않습니다.
+
+|`+METHOD_NOT_ALLOWED+`
+|`+405+`
+|C_002
+|Api는 열려있으나 메소드는 사용 불가합니다.
+
+|`+INVALID_INPUT_VALUE+`
+|`+400+`
+|C_003
+|적절하지 않은 요청 값입니다.
+
+|`+INVALID_TYPE_VALUE+`
+|`+400+`
+|C_005
+|요청 값의 타입이 잘못되었습니다.
+
+|`+ENTITY_NOT_FOUND+`
+|`+400+`
+|C_006
+|지정한 Entity를 찾을 수 없습니다.
+
+|`+HANDLE_ACCESS_DENIED+`
+|`+403+`
+|C_006
+|권한이 없습니다.
+
+|`+MEMBER_NOT_FOUND+`
+|`+400+`
+|C_007
+|사용자 정보를 찾을 수 없습니다.
+|===
+
+==== Request 예시
+include::{snippets}/common-controller-test/make-error/http-request.adoc[]
+
+==== Response 필드
+include::{snippets}/common-controller-test/make-error/response-fields.adoc[]
+
+==== Response 예시
+include::{snippets}/common-controller-test/make-error/http-response.adoc[]
+
 
 [[rest_api_doc]]
 = APIs

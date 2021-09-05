@@ -8,8 +8,8 @@ public enum ErrorCode {
     INVALID_INPUT_VALUE(400, "C_003", "적절하지 않은 요청 값입니다."),
     INVALID_TYPE_VALUE(400, "C_004", "요청 값의 타입이 잘못되었습니다."),
     ENTITY_NOT_FOUND(400, "C_005", "지정한 Entity를 찾을 수 없습니다."),
-    HANDLE_ACCESS_DENIED(403, "C006", "Access is Denied"),
-    MEMBER_NOT_FOUND(400, "I_001", "사용자 정보를 찾을 수 없습니다."),
+    HANDLE_ACCESS_DENIED(403, "C_006", "권한이 없습니다."),
+    MEMBER_NOT_FOUND(400, "C_007", "사용자 정보를 찾을 수 없습니다."),
 
     // FILE ERROR
     FILE_INVALID_TYPE(400, "F_001", "파일 타입이 잘못됐습니다."), // todo 현재는 프론트단에서만 체크하는 로직으로 백단에서의 체크는  필요 없을까?
