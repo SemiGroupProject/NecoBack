@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class NecoErrorResponse {
     private boolean success;
-    private ErrorResponse errorResponse;
+    private ErrorResponse error;
 
     public NecoErrorResponse(boolean success, ErrorResponse errorResponse) {
         this.success = success;
-        this.errorResponse = errorResponse;
+        this.error = errorResponse;
     }
 }
