@@ -4,7 +4,7 @@ import com.trade.project.member.domain.Member;
 
 public interface MemberService {
 
-    boolean isExistAccountId(String accountId);
+    MemberExistResponse isExistAccountId(String accountId);
 
     void updateProfile(Member member, ProfileRequest request);
 

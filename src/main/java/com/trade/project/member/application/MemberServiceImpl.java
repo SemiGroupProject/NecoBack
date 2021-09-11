@@ -20,8 +20,10 @@ public class MemberServiceImpl implements MemberService{
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public boolean isExistAccountId(String accountId) {
-        return memberRepository.findOptionalByAccountId(accountId).isPresent();
+    public MemberExistResponse isExistAccountId(String accountId) {
+        boolean present = memberRepository.findOptionalByAccountId(accountId).isEmpty();
+
+        return new MemberExistResponse(present);
     }
 
     @Transactional

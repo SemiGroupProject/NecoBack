@@ -21,6 +21,26 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DisplayName("Member-Controller-Test")
 class MemberControllerTest extends ProjectApplicationTests {
 
+    @DisplayName("로그인")
+    @Test
+    void login() throws Exception {
+        mockMvc.perform(post("/api/join")
+                        .content(MEMBER_JOIN_JSON_2)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(post("/api/login")
+                .content(MEMBER_LOGIN_JSON_2)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document.document(
+                        customResponseFields(MEMBER_POST_LOGIN_REQ))
+                );
+    }
+
+
     @DisplayName("회원가입")
     @Transactional
     @Test

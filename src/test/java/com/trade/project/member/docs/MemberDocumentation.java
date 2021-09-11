@@ -7,6 +7,11 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWit
 
 public class MemberDocumentation {
 
+    public static final FieldDescriptor[] MEMBER_POST_LOGIN_REQ = {
+            fieldWithPath("result.data").type(JsonFieldType.STRING).description("jwt accessToken")
+    };
+
+
     public static final FieldDescriptor[] MEMBER_POST_JOIN_REQ = {
             fieldWithPath("accountId").type(JsonFieldType.STRING).description("회원 아이디"),
             fieldWithPath("password").type(JsonFieldType.STRING).description("회원 비밀번호"),
@@ -19,12 +24,7 @@ public class MemberDocumentation {
 
     public static final FieldDescriptor[] MEMBER_GET_DUPLICATE_RES = {
             fieldWithPath("success").type(JsonFieldType.BOOLEAN).description("API 호출 성공 여부"),
-            fieldWithPath("result").type(JsonFieldType.BOOLEAN).description("결과: 결과정보 반환 \n" +
-                    "\n" +
-                    "(true : 중복된 아이디 존재 - 사용 불가\n" +
-                    "\n" +
-                    "false : 중복된 아이디 없음 - 사용 가능)"),
-            fieldWithPath("error").type(JsonFieldType.OBJECT).description("에러").optional()
+            fieldWithPath("result.available").type(JsonFieldType.BOOLEAN).description("결과: 가능여부 반환"),
     };
 
     public static final FieldDescriptor[] MEMBER_PUT_PROFILE_REQ = {

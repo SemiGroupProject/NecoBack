@@ -41,7 +41,7 @@ public class MemberController {
 
     // 회원이 존재하는지 확인
     @GetMapping("/members")
-    public ResponseEntity<NecoResponse<Boolean>> findAccountId(@RequestParam("accountId") String accountId) {
+    public ResponseEntity<NecoResponse<MemberExistResponse>> findAccountId(@RequestParam("accountId") String accountId) {
 
         return ResponseEntity.ok(ApiUtils
                 .successResponse(memberService.isExistAccountId(accountId)));
