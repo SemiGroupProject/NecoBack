@@ -25,7 +25,7 @@
         </RollingFile>
 
         <!-- debug log-->
-        <RollingFile name="DebugLog" fileName="${LOG_PATH_NAME}/debug/${FILE_NAME}-DEBUG.log" filePattern="${LOG_PATH_NAME}/debug/${FILE_NAME}-error_%d{yyyy-MM-dd}_%i.log">
+        <RollingFile name="DebugLog" fileName="${LOG_PATH_NAME}/debug/${FILE_NAME}-DEBUG.log" filePattern="${LOG_PATH_NAME}/debug/${FILE_NAME}-debug_%d{yyyy-MM-dd}_%i.log">
             <PatternLayout pattern="${layoutPattern}" />
             <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG"
                               onMatch="ACCEPT" onMismatch="DENY" />
