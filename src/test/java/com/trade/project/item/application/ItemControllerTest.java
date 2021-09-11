@@ -1,4 +1,4 @@
-package com.trade.project.item.controller;
+package com.trade.project.item.application;
 
 import com.trade.project.ProjectApplicationTests;
 import com.trade.project.common.constant.NecoAPI;
@@ -11,12 +11,14 @@ import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.trade.project.fixture.ItemFixture.ITEM_REQUEST_JSON;
+import static com.trade.project.fixture.MemberFixture.MEMBER_JOIN_JSON;
+import static com.trade.project.fixture.MemberFixture.MEMBER_JOIN_JSON_2;
 import static com.trade.project.item.docs.ItemDocumentation.*;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
@@ -33,17 +35,23 @@ class ItemControllerTest extends ProjectApplicationTests {
     String token = "Bearer ";
 
     @BeforeEach
-    void setUp(){
-        List<String> roles = new ArrayList<>();
-        roles.add("ROLE_USER");
-        token += jwtTokenProvider.createToken("user02",roles);
+    @Transactional
+    void setUp() throws Exception {
+
     }
 
-    // todo : security 설정!!헤더에 토큰넣기
     @Test
     @DisplayName("상품을 생성한다.")
+    @Transactional
     void createItem() throws Exception {
 
+        mockMvc.perform(post("/api/join")
+                .content(MEMBER_JOIN_JSON)
+                .contentType(MediaType.APPLICATION_JSON));
+
+        List<String> roles = new ArrayList<>();
+        roles.add("ROLE_USER");
+        token += jwtTokenProvider.createToken("junco",roles);
 
         this.mockMvc.perform(post("/api/"+NecoAPI.ITEM)
                 .header("Authorization", token)
@@ -72,6 +80,19 @@ class ItemControllerTest extends ProjectApplicationTests {
                         customResponseFields(CATEGORY_GET_RES)
                 )
         );
+    }
+
+    @Test
+    @DisplayName("메인 페이지에 출력되는 최신 상품 20개의 정보를 가져온다.")
+    void showMain() throws Exception {
+        this.mockMvc.perform(get("/api/"+NecoAPI.ITEM)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document.document(
+                        customResponseFields(ITEM_LIST_GET_RES)
+                        )
+                );
     }
 
 }

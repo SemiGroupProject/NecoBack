@@ -102,6 +102,20 @@ include::{snippets}/item-controller-test/find-category/response-fields.adoc[]
 ==== Response 예시
 include::{snippets}/item-controller-test/find-category/http-response.adoc[]
 
+=== *상품 리스트 조회 - 상위 20개 [get]*
+
+==== 설명
+메인 화면의 '오늘의 추천' 에 출력되는 상품 리스트의 정보를 가져온다.
+작성 날짜 내림차순 기준이며 상위 20개가 출력된다.
+
+==== Request 예시
+include::{snippets}/item-controller-test/show-main/http-request.adoc[]
+
+==== Response 필드
+include::{snippets}/item-controller-test/show-main/response-fields.adoc[]
+
+==== Response 예시
+include::{snippets}/item-controller-test/show-main/http-response.adoc[]
 
 
 

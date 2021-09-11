@@ -1,5 +1,6 @@
 package com.trade.project.item.application;
 
+import com.querydsl.core.annotations.QueryProjection;
 import com.trade.project.item.domain.Item;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -37,4 +38,17 @@ public class ItemResponse {
                 item.getMember().getId()
         );
     }
-}
+
+    @QueryProjection
+    public ItemResponse(Item item) {
+        this(item.getId(),
+                item.getTitle(),
+                item.getContent(),
+                item.getPrice(),
+                item.getCategory().getCategoryName(),
+                ItemImageResponse.listOf(item.getItemImages()),
+                item.getTradeArea(),
+                item.getShippingPrice().name(),
+                item.getHits(),
+                item.getMember().getId());
+    }}

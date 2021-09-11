@@ -1,5 +1,6 @@
 package com.trade.project.item.domain;
 
+import com.trade.project.common.domain.BaseTimeEntity;
 import com.trade.project.common.exceptions.InvalidValueException;
 import com.trade.project.item.domain.enums.Category;
 import com.trade.project.item.domain.enums.ShippingPrice;
@@ -18,7 +19,7 @@ import static com.trade.project.common.exceptions.ErrorCode.MEMBER_NOT_FOUND;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @EntityListeners(AuditingEntityListener.class)
-public class Item {
+public class Item extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column()
