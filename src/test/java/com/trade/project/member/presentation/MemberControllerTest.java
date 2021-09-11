@@ -36,7 +36,7 @@ class MemberControllerTest extends ProjectApplicationTests {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andDo(document.document(
-                        customResponseFields(MEMBER_POST_LOGIN_REQ))
+                        customResponseFields(MEMBER_POST_LOGIN_RES))
                 );
     }
 

@@ -7,7 +7,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWit
 
 public class MemberDocumentation {
 
-    public static final FieldDescriptor[] MEMBER_POST_LOGIN_REQ = {
+    public static final FieldDescriptor[] MEMBER_POST_LOGIN_RES = {
             fieldWithPath("result.data").type(JsonFieldType.STRING).description("jwt accessToken")
     };
 
