@@ -26,8 +26,8 @@ class CommonControllerTest extends ProjectApplicationTests {
                 .andDo(document.document(
                         responseFields(
                                 fieldWithPath("success").type(JsonFieldType.BOOLEAN).description("API 호출 성공 여부"),
-                                fieldWithPath("result").type(JsonFieldType.STRING).description("API 응답 결과 리턴 (실패시 null 리턴)").optional(),
-                                fieldWithPath("error").type(JsonFieldType.OBJECT).description("에러 리턴 (성공시 null 리턴)"),
+                                fieldWithPath("result").type(JsonFieldType.STRING).description("API 호출 성공 시 응답 결과 리턴").optional(),
+                                fieldWithPath("error").type(JsonFieldType.OBJECT).description("API 호출 실패 시 에러 리턴"),
                                 fieldWithPath("error.message").type(JsonFieldType.STRING).description("에러 메세지").optional(),
                                 fieldWithPath("error.errors").type(JsonFieldType.ARRAY).description("바인딩 에러 발생시 추가 에러 정보").optional(),
                                 fieldWithPath("error.code").type(JsonFieldType.STRING).description("에러코드").optional()
