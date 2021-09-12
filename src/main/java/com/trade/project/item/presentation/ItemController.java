@@ -32,7 +32,7 @@ public class ItemController {
     private final ItemService itemService;
     private final ItemDao itemDao;
 
-    // 상품 등록
+    // [POST] 상품 등록
     @PostMapping(ITEM)
     public ResponseEntity<NecoResponse<Long>> create(@LoginMember Member member, @RequestBody ItemRequest request){
         Long id = itemService.create(request, member);
@@ -42,19 +42,28 @@ public class ItemController {
         .body(ApiUtils.successResponse(id));
     }
 
-    // 카테고리 조회
+    // [GET] 카테고리 조회
     @GetMapping(CATEGORY)
     public ResponseEntity<NecoResponse<Category[]>> findCategory(){
         return ResponseEntity
                 .ok(ApiUtils.successResponse(Category.values()));
     }
 
-    // 상품 조회 - 메인 20개
+    // [GET] 상품 조회 - 메인 20개
     @GetMapping(ITEM)
     public ResponseEntity<NecoResponse<List<ItemResponse>>> showMain(){
         List<ItemResponse> res = itemDao.showMain();
         return ResponseEntity
                 .ok(ApiUtils.successResponse(res));
     }
+
+    // [GET] 상품 조회 - 상품 상세
+    @GetMapping(ITEM+"/{id}")
+    public ResponseEntity<NecoResponse<ItemResponse>> show(@PathVariable Long id){
+        ItemResponse res = itemService.show(id);
+        return ResponseEntity
+                .ok(ApiUtils.successResponse(res));
+    }
+
 
 }

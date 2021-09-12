@@ -22,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class MemberControllerTest extends ProjectApplicationTests {
 
     @DisplayName("로그인")
+    @Transactional
     @Test
     void login() throws Exception {
         mockMvc.perform(post("/api/join")

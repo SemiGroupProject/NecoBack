@@ -13,6 +13,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.util.List;
 
+import static com.trade.project.common.exceptions.ErrorCode.IMAGE_NOT_FOUND;
 import static com.trade.project.common.exceptions.ErrorCode.MEMBER_NOT_FOUND;
 
 @Entity
@@ -85,6 +86,10 @@ public class Item extends BaseTimeEntity {
     public void createImages(ItemRequest req) {
         List<ItemImage> itemImage = req.getItemImages();
 
+        if (itemImage.isEmpty()) {
+            throw new InvalidValueException(IMAGE_NOT_FOUND);
+        }
+
         for (ItemImage info : itemImage) {
             info.updateItem(this);
         }
@@ -92,4 +97,8 @@ public class Item extends BaseTimeEntity {
         itemImages = ItemImages.of(itemImage);
     }
 
+    // 조회수 카운트 올리기
+    public void updateHits() {
+        this.hits+=1;
+    }
 }
