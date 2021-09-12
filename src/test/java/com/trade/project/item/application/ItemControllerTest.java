@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -20,8 +21,10 @@ import static com.trade.project.fixture.ItemFixture.ITEM_REQUEST_JSON;
 import static com.trade.project.fixture.MemberFixture.MEMBER_JOIN_JSON;
 import static com.trade.project.fixture.MemberFixture.MEMBER_JOIN_JSON_2;
 import static com.trade.project.item.docs.ItemDocumentation.*;
+import static com.trade.project.member.docs.MemberDocumentation.MEMBER_GET_DUPLICATE_RES;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
+import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -95,4 +98,58 @@ class ItemControllerTest extends ProjectApplicationTests {
                 );
     }
 
+    @Test
+    @DisplayName("상품의 상세정보를 조회한다.")
+    void show() throws Exception {
+        this.mockMvc.perform(RestDocumentationRequestBuilders.get("/api/"+NecoAPI.ITEM+"/{id}","5")
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document.document(
+                        pathParameters(
+                                parameterWithName("id").description("상세정보를 조회할 상품의 아이디")
+                        ),
+                        customResponseFields(ITEM_GET_RES))
+                );
+    }
+
+    @Test
+    @DisplayName("카테고리별 상품 리스트를 조회한다.")
+    void showPageByCategory() throws Exception {
+        mockMvc.perform(get("/api/"+NecoAPI.ITEM).param("page", "1")
+                                                            .param("size","20")
+                                                            .param("category","MOBILE")
+                .contentType(MediaType.ALL))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document.document(
+                        requestParameters(
+                                parameterWithName("page").description("페이지 번호"),
+                                parameterWithName("size").description("한 페이지당 보여질 게시글 수"),
+                                parameterWithName("category").description("카테고리")
+                        //),
+                        //customResponseFields(MEMBER_GET_DUPLICATE_RES))
+                        ))
+                );
+    }
+
+    @Test
+    @DisplayName("상품명/지역명으로 검색하여 상품 리스트를 조회한다.")
+    void showPageByKeyword() throws Exception {
+        mockMvc.perform(get("/api/"+NecoAPI.ITEM).param("page", "1")
+                .param("size","20")
+                .param("keyword","봉천")
+                .contentType(MediaType.ALL))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document.document(
+                        requestParameters(
+                                parameterWithName("page").description("페이지 번호"),
+                                parameterWithName("size").description("한 페이지당 보여질 게시글 수"),
+                                parameterWithName("keyword").description("검색어")
+                                //),
+                                //customResponseFields(MEMBER_GET_DUPLICATE_RES))
+                        ))
+                );
+    }
 }

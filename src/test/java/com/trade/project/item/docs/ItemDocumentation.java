@@ -39,8 +39,28 @@ public class ItemDocumentation {
             fieldWithPath("result[].itemImages[].url").type(JsonFieldType.STRING).description("첨부된 사진 파일 url"),
             fieldWithPath("result[].itemImages[].fileName").type(JsonFieldType.STRING).description("첨부된 사진 파일 제목"),
             fieldWithPath("result[].tradeArea").type(JsonFieldType.STRING).description("거래 위치"),
-            fieldWithPath("result[].shippingPrice").type(JsonFieldType.STRING).description("배송비 여부 (yes, no)")
+            fieldWithPath("result[].shippingPrice").type(JsonFieldType.STRING).description("배송비 여부 (yes, no)"),
+            fieldWithPath("result[].hits").type(JsonFieldType.NUMBER).description("조회수"),
+            fieldWithPath("result[].memberId").type(JsonFieldType.NUMBER).description("상품을 등록한 사용자 아이디"),
     };
+
+    public static final FieldDescriptor[] ITEM_GET_RES = {
+            fieldWithPath("success").type(JsonFieldType.BOOLEAN).description("API 호출 성공 여부"),
+            fieldWithPath("result").type(JsonFieldType.OBJECT).description("결과값 : 상품 정보 리스트"),
+            fieldWithPath("result.id").type(JsonFieldType.NUMBER).description("상품 아이디"),
+            fieldWithPath("result.title").type(JsonFieldType.STRING).description("상품 제목"),
+            fieldWithPath("result.content").type(JsonFieldType.STRING).description("상품 설명"),
+            fieldWithPath("result.price").type(JsonFieldType.NUMBER).description("가격"),
+            fieldWithPath("result.category").type(JsonFieldType.STRING).description("카테고리"),
+            fieldWithPath("result.itemImages.[]").type(JsonFieldType.ARRAY).description("첨부된 사진 파일 목록"),
+            fieldWithPath("result.itemImages[].url").type(JsonFieldType.STRING).description("첨부된 사진 파일 url"),
+            fieldWithPath("result.itemImages[].fileName").type(JsonFieldType.STRING).description("첨부된 사진 파일 제목"),
+            fieldWithPath("result.tradeArea").type(JsonFieldType.STRING).description("거래 위치"),
+            fieldWithPath("result.shippingPrice").type(JsonFieldType.STRING).description("배송비 여부 (yes, no)"),
+            fieldWithPath("result.hits").type(JsonFieldType.NUMBER).description("조회수"),
+            fieldWithPath("result.memberId").type(JsonFieldType.NUMBER).description("상품을 등록한 사용자 아이디"),
+    };
+
 
     public static final FieldDescriptor[] CATEGORY_GET_RES = {
             fieldWithPath("success").type(JsonFieldType.BOOLEAN).description("API 호출 성공 여부"),

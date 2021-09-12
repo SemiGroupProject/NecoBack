@@ -5,6 +5,7 @@ import com.trade.project.common.dto.NecoResponse;
 
 import com.trade.project.item.application.ItemResponse;
 import com.trade.project.item.application.ItemService;
+import com.trade.project.item.application.PageRequest;
 import com.trade.project.item.domain.enums.Category;
 import com.trade.project.item.application.ItemRequest;
 
@@ -13,6 +14,7 @@ import com.trade.project.member.domain.Member;
 import com.trade.project.security.filter.LoginMember;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,5 +67,27 @@ public class ItemController {
                 .ok(ApiUtils.successResponse(res));
     }
 
+    // [GET] 상품 조회 - 카테고리별 조회
+    @GetMapping(value = ITEM, params = {"page", "size", "category"})
+    public ResponseEntity<NecoResponse<Page<ItemResponse>>> showPageByCategory (
+            PageRequest pageable,
+            @RequestParam String category){
+        // Page 객체 전부를 넘겨주는데 몇개만 넘겨줘도 될거같음
+        Page<ItemResponse> res = itemDao.showPageByCategory(pageable.of(), category);
 
+        return ResponseEntity
+                .ok(ApiUtils.successResponse(res));
+    }
+
+    // [GET] 상품 조회 - 상품명/지역명 검색
+    @GetMapping(value = ITEM, params = {"page", "size", "keyword"})
+    public ResponseEntity<NecoResponse<Page<ItemResponse>>> showPageByKeyword (
+            PageRequest pageable,
+            @RequestParam String keyword){
+
+        Page<ItemResponse> res = itemDao.showPageByKeyword(pageable.of(), keyword);
+
+        return ResponseEntity
+                .ok(ApiUtils.successResponse(res));
+    }
 }

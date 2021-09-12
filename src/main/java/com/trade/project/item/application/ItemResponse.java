@@ -33,7 +33,7 @@ public class ItemResponse {
                 item.getCategory().getCategoryName(),
                 ItemImageResponse.listOf(item.getItemImages()),
                 item.getTradeArea(),
-                null,
+                item.getShippingPrice().name(),
                 item.getHits(),
                 item.getMember().getId()
         );
