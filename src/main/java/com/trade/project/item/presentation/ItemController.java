@@ -40,8 +40,8 @@ public class ItemController {
         Long id = itemService.create(request, member);
 
         return ResponseEntity
-        .created(URI.create(ITEM+"/"+id))
-        .body(ApiUtils.successResponse(id));
+                .created(URI.create(ITEM+"/"+id))
+                .body(ApiUtils.successResponse(id));
     }
 
     // [GET] 카테고리 조회
@@ -89,5 +89,23 @@ public class ItemController {
 
         return ResponseEntity
                 .ok(ApiUtils.successResponse(res));
+    }
+
+    // [PUT] 상품 수정
+    @PutMapping(ITEM+"/{id}")
+    public ResponseEntity<Void> update(@RequestBody ItemRequest request, @PathVariable Long id, @LoginMember Member loginMember){
+        itemService.update(request, id, loginMember);
+        return ResponseEntity
+                .noContent()
+                .build();
+    }
+
+    // [PUT] 상품 삭제
+    @DeleteMapping(ITEM+"/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id, @LoginMember Member loginMember){
+        itemService.delete(id, loginMember);
+        return ResponseEntity
+                .noContent()
+                .build();
     }
 }

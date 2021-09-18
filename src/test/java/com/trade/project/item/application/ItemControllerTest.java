@@ -81,8 +81,8 @@ class ItemControllerTest extends ProjectApplicationTests {
                 .andExpect(status().isOk())
                 .andDo(document.document(
                         customResponseFields(CATEGORY_GET_RES)
-                )
-        );
+                        )
+                );
     }
 
     @Test
@@ -117,8 +117,8 @@ class ItemControllerTest extends ProjectApplicationTests {
     @DisplayName("카테고리별 상품 리스트를 조회한다.")
     void showPageByCategory() throws Exception {
         mockMvc.perform(get("/api/"+NecoAPI.ITEM).param("page", "1")
-                                                            .param("size","20")
-                                                            .param("category","MOBILE")
+                .param("size","20")
+                .param("category","MOBILE")
                 .contentType(MediaType.ALL))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -127,8 +127,8 @@ class ItemControllerTest extends ProjectApplicationTests {
                                 parameterWithName("page").description("페이지 번호"),
                                 parameterWithName("size").description("한 페이지당 보여질 게시글 수"),
                                 parameterWithName("category").description("카테고리")
-                        //),
-                        //customResponseFields(MEMBER_GET_DUPLICATE_RES))
+                                //),
+                                //customResponseFields(MEMBER_GET_DUPLICATE_RES))
                         ))
                 );
     }

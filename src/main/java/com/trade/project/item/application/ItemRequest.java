@@ -1,6 +1,10 @@
 package com.trade.project.item.application;
 
+import com.trade.project.item.domain.Item;
 import com.trade.project.item.domain.ItemImage;
+import com.trade.project.item.domain.enums.Category;
+import com.trade.project.item.domain.enums.ShippingPrice;
+import com.trade.project.member.domain.Member;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,5 +34,4 @@ public class ItemRequest {
         this.tradeArea = tradeArea;
         this.shippingPrice = shippingPrice;
     }
-
 }

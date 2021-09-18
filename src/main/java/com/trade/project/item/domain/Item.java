@@ -101,4 +101,15 @@ public class Item extends BaseTimeEntity {
     public void updateHits() {
         this.hits+=1;
     }
+
+    // 아이템 정보 수정
+    public void updateItem(ItemRequest req) {
+        title = req.getTitle();
+        content = req.getContent();
+        price = req.getPrice();
+        category = Category.fromString(req.getCategory());
+        tradeArea = req.getTradeArea();
+        shippingPrice = ShippingPrice.convertShippingPrice(req.getShippingPrice());
+    }
+
 }
