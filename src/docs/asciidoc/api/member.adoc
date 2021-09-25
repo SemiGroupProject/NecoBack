@@ -63,6 +63,23 @@ include::{snippets}/member-controller-test/get-profile/response-fields.adoc[]
 include::{snippets}/member-controller-test/get-profile/http-response.adoc[]
 
 
+=== *로그인 [post]*
+
+==== 설명
+회원 정보를 등록한다.
+
+==== Request 필드
+include::{snippets}/member-controller-test/login/request-fields.adoc[]
+
+==== Request 예시
+include::{snippets}/member-controller-test/login/http-request.adoc[]
+
+==== Response 필드
+include::{snippets}/member-controller-test/login/response-fields.adoc[]
+
+==== Response 예시
+include::{snippets}/member-controller-test/login/http-response.adoc[]
+
 
 
 '''

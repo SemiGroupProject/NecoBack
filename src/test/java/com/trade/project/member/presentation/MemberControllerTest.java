@@ -18,6 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Transactional
 @DisplayName("Member-Controller-Test")
 class MemberControllerTest extends ProjectApplicationTests {
 
@@ -36,7 +37,9 @@ class MemberControllerTest extends ProjectApplicationTests {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andDo(document.document(
-                        customResponseFields(MEMBER_POST_LOGIN_RES))
+                        customRequestFields(MEMBER_POST_LOGIN_REQ),
+                        customResponseFields(MEMBER_POST_LOGIN_RES)
+                        )
                 );
     }
 

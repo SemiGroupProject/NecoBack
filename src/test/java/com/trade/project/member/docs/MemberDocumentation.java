@@ -7,6 +7,11 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWit
 
 public class MemberDocumentation {
 
+    public static final FieldDescriptor[] MEMBER_POST_LOGIN_REQ = {
+            fieldWithPath("accountId").type(JsonFieldType.STRING).description("회원 아이디"),
+            fieldWithPath("password").type(JsonFieldType.STRING).description("회원 비밀번호"),
+    };
+
     public static final FieldDescriptor[] MEMBER_POST_LOGIN_RES = {
             fieldWithPath("result.data").type(JsonFieldType.STRING).description("jwt accessToken")
     };
