@@ -6,7 +6,73 @@ endif::[]
 === *상품 등록 [post]*
 
 ==== 설명
-상품 정보를 등록한다
+상품 정보를 등록한다.
+
+* 카테고리 정보
+
+카테고리에는 다음과 같은 값이 입력되어야 한다.
+
+|===
+|입력값| 설명
+
+|CLOTHES
+|의류
+
+|MEN_CLOTHES
+|남성의류
+
+|WOMEN_CLOTHES
+|여성 의류
+
+|SHOES
+|신발
+
+|ELECTRONIC
+|전자제품
+
+|COMPUTER
+|컴퓨터
+
+|MOBILE
+|모바일 제품
+
+|CAMERA
+|카메라
+
+|HOME_APPLIANCES
+|가전제품
+
+|ETC
+|잡화
+
+|BOOK
+|도서
+
+|TICKET
+|티켓
+
+|RECORD
+|음반
+
+|ACC
+|악세사
+
+|===
+
+* 배송비 정보
+
+배송비 정보에는 다음과 같은 값이 입력되어야 한다.
+
+|===
+|입력값| 설명
+
+|yes
+|배송비를 지불해야한다.
+
+|no
+|배송비를 지불하지 않아도 된다.
+
+|===
 
 ==== Request 필드
 include::{snippets}/item-controller-test/create-item/request-fields.adoc[]
@@ -24,6 +90,8 @@ include::{snippets}/item-controller-test/create-item/http-response.adoc[]
 
 ==== 설명
 전체 카테고리 정보를 가져온다.
+
+현재 카테고리 정보는 DB에 연결해서 가져오는 방식이 아니라, enum 으로 정의되어있다.
 
 ==== Request 예시
 include::{snippets}/item-controller-test/find-category/http-request.adoc[]

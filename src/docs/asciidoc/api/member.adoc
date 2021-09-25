@@ -1,0 +1,85 @@
+ifndef::snippets[]
+:snippets: {docdir}/build/generated-snippets
+endif::[]
+
+== #*_MEMBER API_*#
+=== *회원 가입 [post]*
+
+==== 설명
+회원 정보를 등록한다.
+
+==== Request 필드
+include::{snippets}/member-controller-test/join-member/request-fields.adoc[]
+
+==== Request 예시
+include::{snippets}/member-controller-test/join-member/http-request.adoc[]
+
+==== Response 예시
+include::{snippets}/member-controller-test/join-member/http-response.adoc[]
+
+=== *아이디 중복 여부 확인[get]*
+
+==== 설명
+아이디 중복 여부를 확인한다.
+
+==== Request Parameters 필드
+include::{snippets}/member-controller-test/is-exist-account-id/request-parameters.adoc[]
+
+==== Request 예시
+include::{snippets}/member-controller-test/is-exist-account-id/http-request.adoc[]
+
+==== Response 필드
+include::{snippets}/member-controller-test/is-exist-account-id/response-fields.adoc[]
+
+==== Response 예시
+include::{snippets}/member-controller-test/is-exist-account-id/http-response.adoc[]
+
+=== *회원 정보 변경 [put]*
+
+==== 설명
+회원 정보를 변경한다.
+
+==== Request 필드
+include::{snippets}/member-controller-test/update-member/request-fields.adoc[]
+
+==== Request 예시
+include::{snippets}/member-controller-test/update-member/http-request.adoc[]
+
+==== Response 예시
+include::{snippets}/member-controller-test/update-member/http-response.adoc[]
+
+=== *회원 정보 조회 [get]*
+
+==== 설명
+회원 정보를 조회한다.
+
+==== Request 예시
+include::{snippets}/member-controller-test/get-profile/http-request.adoc[]
+
+==== Response 필드
+include::{snippets}/member-controller-test/get-profile/response-fields.adoc[]
+
+==== Response 예시
+include::{snippets}/member-controller-test/get-profile/http-response.adoc[]
+
+
+=== *로그인 [post]*
+
+==== 설명
+회원 정보를 등록한다.
+
+==== Request 필드
+include::{snippets}/member-controller-test/login/request-fields.adoc[]
+
+==== Request 예시
+include::{snippets}/member-controller-test/login/http-request.adoc[]
+
+==== Response 필드
+include::{snippets}/member-controller-test/login/response-fields.adoc[]
+
+==== Response 예시
+include::{snippets}/member-controller-test/login/http-response.adoc[]
+
+
+
+'''

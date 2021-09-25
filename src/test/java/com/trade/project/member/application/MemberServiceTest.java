@@ -36,7 +36,7 @@ class MemberServiceTest {
     void notExistAccountId() {
         when(memberRepository.findOptionalByAccountId(anyString())).thenReturn(Optional.empty());
 
-        assertThat(memberService.isExistAccountId("user1")).isFalse();
+        assertThat(memberService.isExistAccountId("user1").isAvailable()).isTrue();
     }
 
     @DisplayName("아이디 확인: 존재o")
@@ -44,7 +44,7 @@ class MemberServiceTest {
     void existAccountId() {
         when(memberRepository.findOptionalByAccountId(anyString())).thenReturn(Optional.of(MEMBER1));
 
-        assertThat(memberService.isExistAccountId("user1")).isTrue();
+        assertThat(memberService.isExistAccountId("user1").isAvailable()).isFalse();
     }
 
     @DisplayName("회원정보 변경")

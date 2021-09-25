@@ -6,14 +6,12 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class NecoResponse <T> {
-
-    //공통 response
+public class NecoErrorResponse {
     private boolean success;
-    private T result;
+    private ErrorResponse error;
 
-    public NecoResponse(boolean success, T result) {
+    public NecoErrorResponse(boolean success, ErrorResponse errorResponse) {
         this.success = success;
-        this.result = result;
+        this.error = errorResponse;
     }
 }

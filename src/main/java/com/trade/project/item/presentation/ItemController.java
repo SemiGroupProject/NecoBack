@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 
+import static com.trade.project.common.constant.NecoAPI.CATEGORY;
 import static com.trade.project.common.constant.NecoAPI.ITEM;
 
 @RequiredArgsConstructor
@@ -35,7 +36,7 @@ public class ItemController {
         .body(ApiUtils.successResponse(id));
     }
 
-    @GetMapping("/category")
+    @GetMapping(CATEGORY)
     public ResponseEntity<NecoResponse<Category[]>> findCategory(){
         return ResponseEntity
                 .ok(ApiUtils.successResponse(Category.values()));
