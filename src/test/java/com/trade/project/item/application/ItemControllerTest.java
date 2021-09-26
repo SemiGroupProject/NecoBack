@@ -9,6 +9,7 @@ import com.trade.project.security.provider.JwtTokenProvider;
 import com.trade.project.security.service.AccountContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,8 @@ class ItemControllerTest extends ProjectApplicationTests {
     }
 
     @Test
+    @Order(1)
     @DisplayName("상품을 생성한다.")
-    @Transactional
     void createItem() throws Exception {
         this.mockMvc.perform(post("/api/"+NecoAPI.ITEM)
                 .header("Authorization", token)
@@ -99,7 +100,7 @@ class ItemControllerTest extends ProjectApplicationTests {
     @Test
     @DisplayName("상품의 상세정보를 조회한다.")
     void show() throws Exception {
-        this.mockMvc.perform(RestDocumentationRequestBuilders.get("/api/"+NecoAPI.ITEM+"/{id}","5")
+        this.mockMvc.perform(RestDocumentationRequestBuilders.get("/api/"+NecoAPI.ITEM+"/{id}","7")
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -136,7 +137,7 @@ class ItemControllerTest extends ProjectApplicationTests {
     void showPageByKeyword() throws Exception {
         mockMvc.perform(get("/api/"+NecoAPI.ITEM).param("page", "1")
                 .param("size","20")
-                .param("keyword","봉천")
+                .param("keyword","item01")
                 .contentType(MediaType.ALL))
                 .andDo(print())
                 .andExpect(status().isOk())

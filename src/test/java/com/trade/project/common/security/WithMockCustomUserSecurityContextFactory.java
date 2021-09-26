@@ -26,7 +26,6 @@ public class WithMockCustomUserSecurityContextFactory implements WithSecurityCon
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority(customUser.role()));
 
-        Member member = new Member(customUser.id(), customUser.password());
         AccountContext accountContext = new AccountContext(customUser.userId(), customUser.password(), roles);
         Authentication auth = getAuthentication(accountContext);
 
