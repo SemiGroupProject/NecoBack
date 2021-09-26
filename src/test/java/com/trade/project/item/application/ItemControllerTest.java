@@ -4,7 +4,9 @@ import com.trade.project.ProjectApplicationTests;
 import com.trade.project.common.constant.NecoAPI;
 
 
+import com.trade.project.common.security.WithMockCustomUser;
 import com.trade.project.security.provider.JwtTokenProvider;
+import com.trade.project.security.service.AccountContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -40,22 +45,15 @@ class ItemControllerTest extends ProjectApplicationTests {
     @BeforeEach
     @Transactional
     void setUp() throws Exception {
-
+        List<String> roles = new ArrayList<>();
+        roles.add("ROLE_USER");
+        token += jwtTokenProvider.createToken("test",roles);
     }
 
     @Test
     @DisplayName("상품을 생성한다.")
     @Transactional
     void createItem() throws Exception {
-
-        mockMvc.perform(post("/api/join")
-                .content(MEMBER_JOIN_JSON)
-                .contentType(MediaType.APPLICATION_JSON));
-
-        List<String> roles = new ArrayList<>();
-        roles.add("ROLE_USER");
-        token += jwtTokenProvider.createToken("junco",roles);
-
         this.mockMvc.perform(post("/api/"+NecoAPI.ITEM)
                 .header("Authorization", token)
                 .content(ITEM_REQUEST_JSON)
