@@ -1,5 +1,6 @@
 package com.trade.project.item.domain;
 
+import com.trade.project.common.domain.BaseTimeEntity;
 import com.trade.project.common.exceptions.InvalidValueException;
 import com.trade.project.item.domain.enums.Category;
 import com.trade.project.item.domain.enums.ShippingPrice;
@@ -12,13 +13,14 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.util.List;
 
+import static com.trade.project.common.exceptions.ErrorCode.IMAGE_NOT_FOUND;
 import static com.trade.project.common.exceptions.ErrorCode.MEMBER_NOT_FOUND;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @EntityListeners(AuditingEntityListener.class)
-public class Item {
+public class Item extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column()
@@ -84,11 +86,30 @@ public class Item {
     public void createImages(ItemRequest req) {
         List<ItemImage> itemImage = req.getItemImages();
 
+        if (itemImage.isEmpty()) {
+            throw new InvalidValueException(IMAGE_NOT_FOUND);
+        }
+
         for (ItemImage info : itemImage) {
             info.updateItem(this);
         }
 
         itemImages = ItemImages.of(itemImage);
+    }
+
+    // 조회수 카운트 올리기
+    public void updateHits() {
+        this.hits+=1;
+    }
+
+    // 아이템 정보 수정
+    public void updateItem(ItemRequest req) {
+        title = req.getTitle();
+        content = req.getContent();
+        price = req.getPrice();
+        category = Category.fromString(req.getCategory());
+        tradeArea = req.getTradeArea();
+        shippingPrice = ShippingPrice.convertShippingPrice(req.getShippingPrice());
     }
 
 }

@@ -19,7 +19,9 @@ public enum ErrorCode {
 
     // ITEM ERROR
     CATEGORY_INVALID_VALUE(400,"I_002","카테고리에 적절하지 않은 요청 값이 입력됐습니다."),
-    SHIPPING_INVALID_VALUE(400, "I_003","배송여부에 적절하지 않은 요청 값이 입력됐습니다. ");
+    SHIPPING_INVALID_VALUE(400, "I_003","배송여부에 적절하지 않은 요청 값이 입력됐습니다. "),
+    ITEM_NOT_FOUND(400, "I_004","상품이 존재하지 않습니다."),
+    IMAGE_NOT_FOUND(400, "I_005","사진 파일이 정상적으로 전송되지 않습니다.");
 
     private final String code;
     private final String message;

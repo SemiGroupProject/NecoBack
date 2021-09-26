@@ -5,6 +5,8 @@ import com.trade.project.item.domain.enums.Category;
 import com.trade.project.item.domain.Item;
 import com.trade.project.item.domain.enums.ShippingPrice;
 import com.trade.project.item.application.ItemRequest;
+import com.trade.project.member.domain.AddressInfo;
+import com.trade.project.member.domain.Member;
 
 public class ItemFixture {
 

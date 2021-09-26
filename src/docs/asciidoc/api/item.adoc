@@ -55,7 +55,7 @@ endif::[]
 |음반
 
 |ACC
-|악세사
+|악세사리
 
 |===
 
@@ -103,6 +103,132 @@ include::{snippets}/item-controller-test/find-category/response-fields.adoc[]
 include::{snippets}/item-controller-test/find-category/http-response.adoc[]
 
 
+=== *상품 상세 조회 [get]*
+
+==== 설명
+상품 id를 통해 상세 정보를 조회한다.
+
+==== Path Parameter 필드
+include::{snippets}/item-controller-test/show/path-parameters.adoc[]
+
+==== Request 예시
+include::{snippets}/item-controller-test/show/http-request.adoc[]
+
+==== Response 필드
+include::{snippets}/item-controller-test/show/response-fields.adoc[]
+
+==== Response 예시
+include::{snippets}/item-controller-test/show/http-response.adoc[]
+
+
+=== *상품 리스트 조회 - 상위 20개 [get]*
+
+==== 설명
+메인 화면의 '오늘의 추천' 에 출력되는 상품 리스트의 정보를 가져온다.
+
+작성 날짜 내림차순 기준이며 상위 20개가 출력된다. (페이징 처리가 적용되지 않는다.)
+
+==== Request 예시
+include::{snippets}/item-controller-test/show-main/http-request.adoc[]
+
+==== Response 필드
+include::{snippets}/item-controller-test/show-main/response-fields.adoc[]
+
+==== Response 예시
+include::{snippets}/item-controller-test/show-main/http-response.adoc[]
+
+
+=== *상품 리스트 조회 - 카테고리별 조회 [get]*
+
+==== 설명
+카테고리별 상품 리스트를 조회한다.
+
+페이징 처리가 적용된다.
+
+* 카테고리 정보
+
+카테고리에는 다음과 같은 값이 입력되어야 한다.
+
+|===
+|입력값| 설명
+
+|CLOTHES
+|의류
+
+|MEN_CLOTHES
+|남성의류
+
+|WOMEN_CLOTHES
+|여성 의류
+
+|SHOES
+|신발
+
+|ELECTRONIC
+|전자제품
+
+|COMPUTER
+|컴퓨터
+
+|MOBILE
+|모바일 제품
+
+|CAMERA
+|카메라
+
+|HOME_APPLIANCES
+|가전제품
+
+|ETC
+|잡화
+
+|BOOK
+|도서
+
+|TICKET
+|티켓
+
+|RECORD
+|음반
+
+|ACC
+|악세사리
+
+|===
+
+
+==== Request Parameters 필드
+include::{snippets}/item-controller-test/show-page-by-category/request-parameters.adoc[]
+
+==== Request 예시
+include::{snippets}/item-controller-test/show-page-by-category/http-request.adoc[]
+
+//==== Response 필드
+// include::{snippets}/item-controller-test/show-page-by-category/response-fields.adoc[]
+
+==== Response 예시
+include::{snippets}/item-controller-test/show-page-by-category/http-response.adoc[]
+
+
+
+=== *상품 리스트 조회 - 검색 [get]*
+
+==== 설명
+상품명, 지역명 키워드가 포함된 상품 리스트를 조회한다.
+
+페이징 처리가 적용된다.
+
+==== Request Parameters 필드
+include::{snippets}/item-controller-test/show-page-by-keyword/request-parameters.adoc[]
+
+==== Request 예시
+include::{snippets}/item-controller-test/show-page-by-keyword//http-request.adoc[]
+
+//==== Response 필드
+// include::{snippets}/item-controller-test/show-page-by-category/response-fields.adoc[]
+
+==== Response 예시
+include::{snippets}/item-controller-test/show-page-by-keyword/http-response.adoc[]
 
 
 '''

@@ -26,11 +26,11 @@ NecoNico API 문서 입니다.
 
 |`+result+`
 |`+반환값에 따라 다름+`
-|API 응답 결과 리턴 (실패시 null 리턴)
+|API 응답 결과 리턴
 
 |`+error+`
 |`+Object+`
-| 에러 리턴 (성공시 null 리턴)
+| 에러 리턴
 
 |`+error.message+`
 |`+String+`

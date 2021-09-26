@@ -30,5 +30,4 @@ public class ItemRequest {
         this.tradeArea = tradeArea;
         this.shippingPrice = shippingPrice;
     }
-
 }
