@@ -1,0 +1,6 @@
+# an example of docker compose
+version: '1'
+services:
+  my-service-name:
+    image: suwampy/neconico:v1.0.0
+    restart: always
