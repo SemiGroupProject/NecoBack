@@ -9,6 +9,7 @@ import com.trade.project.common.snippet.CustomResponseFieldSnippet;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 
 import org.springframework.boot.test.context.SpringBootTest;
@@ -45,7 +46,9 @@ public abstract class ProjectApplicationTests {
     protected MockMvc mockMvc;
     protected RestDocumentationResultHandler document;
 
-    private final String host = "http://localhost:8080";
+    @Value("${neconico.host}")
+    private String host;
+
     private final Pattern hostPattern = Pattern.compile("(http[s]?)://([\\w-.]+)([:]([\\d]+))?");
 
     @BeforeEach
