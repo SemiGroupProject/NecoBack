@@ -151,4 +151,39 @@ class ItemControllerTest extends ProjectApplicationTests {
                         ))
                 );
     }
+
+    @Test
+    @DisplayName("상품정보를 수정한다.")
+    void putItem() throws Exception {
+        this.mockMvc.perform(RestDocumentationRequestBuilders.put("/api/"+NecoAPI.ITEM+"/{id}","7")
+                .header("Authorization", token)
+                .content(ITEM_REQUEST_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful())
+                .andDo(print())
+                .andDo(document.document(
+                        pathParameters(
+                                parameterWithName("id").description("정보를 수정할 상품의 아이디")
+                        ),
+                        customRequestFields(ITEM_PUT_REQ)
+                ));
+
+    }
+
+    @Test
+    @DisplayName("상품정보를 삭제한다.")
+    @Transactional
+    void deleteItem() throws Exception {
+        this.mockMvc.perform(RestDocumentationRequestBuilders.delete("/api/"+NecoAPI.ITEM+"/{id}","8")
+                .header("Authorization", token)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful())
+                .andDo(print())
+                .andDo(document.document(
+                        pathParameters(
+                                parameterWithName("id").description("정보를 삭제할 상품의 아이디")
+                        )
+                ));
+
+    }
 }

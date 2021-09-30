@@ -49,4 +49,5 @@ public class ItemFixture {
             "    \"tradeArea\":\"tradeArea\",\n" +
             "    \"shippingPrice\":\"no\"\n" +
             "}";
+
 }

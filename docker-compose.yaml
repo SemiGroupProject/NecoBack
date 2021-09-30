@@ -1,6 +1,8 @@
-# an example of docker compose
-version: '1'
+version: '3.0'
 services:
-  my-service-name:
-    image: suwampy/neconico:v1.0.0
-    restart: always
+  web:
+    container_name: neconico
+    build:
+      context: .
+      dockerfile: Dockerfile-neconico-server
+    image: suwampy/neconico

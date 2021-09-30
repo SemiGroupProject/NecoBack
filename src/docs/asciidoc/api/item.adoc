@@ -231,4 +231,38 @@ include::{snippets}/item-controller-test/show-page-by-keyword//http-request.adoc
 include::{snippets}/item-controller-test/show-page-by-keyword/http-response.adoc[]
 
 
+
+=== *상품 정보 수정 [put]*
+
+==== 설명
+상품 id를 통해 상품 정보를 수정한다.
+
+==== Path Parameter 필드
+include::{snippets}/item-controller-test/put-item/path-parameters.adoc[]
+
+==== Request 필드
+include::{snippets}/item-controller-test/put-item/request-fields.adoc[]
+
+==== Request 예시
+include::{snippets}/item-controller-test/put-item/http-request.adoc[]
+
+==== Response 예시
+include::{snippets}/item-controller-test/put-item/http-response.adoc[]
+
+
+
+=== *상품 정보 삭제 [delete]*
+
+==== 설명
+상품 id를 통해 상품 정보를 삭제한다.
+
+==== Path Parameter 필드
+include::{snippets}/item-controller-test/delete-item/path-parameters.adoc[]
+
+==== Request 예시
+include::{snippets}/item-controller-test/delete-item/http-request.adoc[]
+
+==== Response 예시
+include::{snippets}/item-controller-test/delete-item/http-response.adoc[]
+
 '''
