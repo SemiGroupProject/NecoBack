@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.springframework.util.StringUtils.hasText;
 
 @Entity
@@ -38,8 +41,8 @@ public class Member {
     @OneToOne(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Store store;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Favorite favorite;
+    @OneToMany(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private final List<Favorite> favorites = new ArrayList<>();
 
     public Member(String accountId, String password, String name, String phoneNumber,
                   AddressInfo addressInfo) {
@@ -89,9 +92,10 @@ public class Member {
     }
 
     // 찜 생성
-    public Favorite createFavorite() {
-        Favorite favorite = new Favorite();
-        this.favorite = favorite;
+    public Favorite createFavorite(Item item) {
+        Favorite favorite = new Favorite(this, item);
+        favorites.add(favorite);
+        item.insertFavorite(favorite);
         return favorite;
     }
 }

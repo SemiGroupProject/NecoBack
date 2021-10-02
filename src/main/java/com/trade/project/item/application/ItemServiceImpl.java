@@ -9,15 +9,13 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.trade.project.common.exceptions.ErrorCode.ITEM_NOT_FOUND;
 
 @RequiredArgsConstructor(access = AccessLevel.PUBLIC)
 @Service
 @Slf4j
-@Transactional
 public class ItemServiceImpl implements ItemService{
     private final ItemRepository itemRepository;
     private final ItemImageRepository itemImageRepository;
@@ -31,6 +29,7 @@ public class ItemServiceImpl implements ItemService{
         return item.getId();
     }
 
+    @Transactional
     @Override
     public ItemResponse show(Long id) {
         Item item = itemRepository.findById(id)
@@ -41,7 +40,7 @@ public class ItemServiceImpl implements ItemService{
         return ItemResponse.of(item);
     }
 
-
+    @Transactional
     @Override
     public Long update(ItemRequest itemRequest, Long id, Member loginMember) {
         Item item = itemRepository.findById(id)
@@ -58,6 +57,7 @@ public class ItemServiceImpl implements ItemService{
         return item.getId();
     }
 
+    @Transactional
     @Override
     public void delete(Long id, Member loginMember) {
         Item item = itemRepository.findById(id)
@@ -67,4 +67,13 @@ public class ItemServiceImpl implements ItemService{
         itemRepository.deleteById(id);
     }
 
+
+    /**
+     * 추후 분리할 Read
+     */
+    @Transactional(readOnly = true)
+    @Override
+    public Item findItemById(Long id) {
+        return itemRepository.findById(id).orElseThrow();
+    }
 }
