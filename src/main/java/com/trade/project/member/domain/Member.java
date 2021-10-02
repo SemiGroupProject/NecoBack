@@ -1,5 +1,6 @@
 package com.trade.project.member.domain;
 
+import com.trade.project.favorite.domain.Favorite;
 import com.trade.project.item.application.ItemRequest;
 import com.trade.project.item.domain.Item;
 import com.trade.project.store.domain.Store;
@@ -36,6 +37,9 @@ public class Member {
 
     @OneToOne(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Store store;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Favorite favorite;
 
     public Member(String accountId, String password, String name, String phoneNumber,
                   AddressInfo addressInfo) {
@@ -82,5 +86,12 @@ public class Member {
     // Item 등록
     public Item createItem(ItemRequest item){
         return Item.createItem(item,this);
+    }
+
+    // 찜 생성
+    public Favorite createFavorite() {
+        Favorite favorite = new Favorite();
+        this.favorite = favorite;
+        return favorite;
     }
 }
