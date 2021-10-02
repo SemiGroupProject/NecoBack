@@ -54,6 +54,20 @@
         <Root level="info">
         </Root>
 
+        <!-- jpa log : debug -->
+        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="debug" additivity="false">
+            <AppenderRef ref="ConsoleLog" />
+            <AppenderRef ref="FileLog"/>
+            <AppenderRef ref="DebugLog"/>
+            <AppenderRef ref="ErrorLog"/>
+        </Logger>
+        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
+            <AppenderRef ref="ConsoleLog" />
+            <AppenderRef ref="FileLog"/>
+            <AppenderRef ref="DebugLog"/>
+            <AppenderRef ref="ErrorLog"/>
+        </Logger>
+
         <!-- security log : debug -->
         <logger name="org.springframework.security" level="debug" additivity="false">
             <AppenderRef ref="ConsoleLog" />
