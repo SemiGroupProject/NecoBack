@@ -91,7 +91,6 @@ include::{snippets}/item-controller-test/create-item/http-response.adoc[]
 ==== 설명
 전체 카테고리 정보를 가져온다.
 
-현재 카테고리 정보는 DB에 연결해서 가져오는 방식이 아니라, enum 으로 정의되어있다.
 
 ==== Request 예시
 include::{snippets}/item-controller-test/find-category/http-request.adoc[]
