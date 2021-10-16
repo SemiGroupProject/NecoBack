@@ -1,17 +1,20 @@
 package com.trade.project.favorite.application;
 
+import com.trade.project.ProjectApplicationTests;
 import com.trade.project.favorite.domain.FavoriteRepository;
 import com.trade.project.item.application.ItemService;
 import com.trade.project.item.application.ItemServiceImpl;
 import com.trade.project.item.domain.ItemImageRepository;
 import com.trade.project.item.domain.ItemRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class FavoriteServiceImplTest {
+class FavoriteServiceImplTest extends ProjectApplicationTests {
 
     @Mock
     private FavoriteRepository favoriteRepository;
@@ -26,6 +29,13 @@ class FavoriteServiceImplTest {
     @BeforeEach
     void setUp() {
         itemService = new ItemServiceImpl(itemRepository, itemImageRepository);
-        favoriteService = new FavoriteServiceImpl(favoriteRepository, itemService);
+        favoriteService = new FavoriteServiceImpl(favoriteRepository, itemRepository);
     }
+
+    @DisplayName("찜 등")
+    @Test
+    void createFavorite() throws Exception {
+
+    }
+
 }

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <property name="LOG_DIR" value="./logs" />
+        <property name="LOG_PATH_NAME" value="${LOG_DIR}" />
+        <property name="FILE_NAME" value="neconico" />
+        <property name="layoutPattern">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</property>
+    </Properties>
+
+    <!-- 파일 설정-->
+    <Appenders>
+        <!-- 콘솔 -->
+        <Console name="ConsoleLog" target="SYSTEM_OUT">
+            <PatternLayout pattern="${layoutPattern}" />
+        </Console>
+
+        <!-- 전체 Log 저장 -->
+        <RollingFile name="FileLog" fileName="${LOG_PATH_NAME}/${FILE_NAME}.log" filePattern="${LOG_PATH_NAME}/${FILE_NAME}_%d{yyyy-MM-dd}_%i.log">
+            <PatternLayout pattern="${layoutPattern}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" /> <!-- 10MB 용량이 초과시 DefaultRolloverStrategy 정책만큼 넘버링 -->
+                <TimeBasedTriggeringPolicy interval="1" /><!-- 일별 로그 파일 생성-->
+            </Policies>
+            <DefaultRolloverStrategy max="500" fileIndex="min" /><!-- 롤링 파일 500개 까지 생성 -->
+        </RollingFile>
+
+        <!-- debug log-->
+        <RollingFile name="DebugLog" fileName="${LOG_PATH_NAME}/debug/${FILE_NAME}-DEBUG.log" filePattern="${LOG_PATH_NAME}/debug/${FILE_NAME}-debug_%d{yyyy-MM-dd}_%i.log">
+            <PatternLayout pattern="${layoutPattern}" />
+            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG"
+                              onMatch="ACCEPT" onMismatch="DENY" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" /> <!-- 10MB 용량이 초과시 DefaultRolloverStrategy 정책만큼 넘버링 -->
+                <TimeBasedTriggeringPolicy interval="1" /><!-- 일별 로그 파일 생성-->
+            </Policies>
+            <DefaultRolloverStrategy max="500" fileIndex="min" /><!-- 롤링 파일 500개 까지 생성 -->
+        </RollingFile>
+
+        <!-- error log-->
+        <RollingFile name="ErrorLog" fileName="${LOG_PATH_NAME}/error/${FILE_NAME}-ERROR.log" filePattern="${LOG_PATH_NAME}/error/${FILE_NAME}-error_%d{yyyy-MM-dd}_%i.log">
+            <PatternLayout pattern="${layoutPattern}" />
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR"
+                              onMatch="ACCEPT" onMismatch="DENY" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" /> <!-- 10MB 용량이 초과시 DefaultRolloverStrategy 정책만큼 넘버링 -->
+                <TimeBasedTriggeringPolicy interval="1" /><!-- 일별 로그 파일 생성-->
+            </Policies>
+            <DefaultRolloverStrategy max="500" fileIndex="min" /><!-- 롤링 파일 500개 까지 생성 -->
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!--Root 는 필수로 있어야 함 -->
+        <Root level="info">
+        </Root>
+
+        <!-- jpa log : debug -->
+        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="debug" additivity="false">
+            <AppenderRef ref="ConsoleLog" />
+            <AppenderRef ref="FileLog"/>
+            <AppenderRef ref="DebugLog"/>
+            <AppenderRef ref="ErrorLog"/>
+        </Logger>
+        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
+            <AppenderRef ref="ConsoleLog" />
+            <AppenderRef ref="FileLog"/>
+            <AppenderRef ref="DebugLog"/>
+            <AppenderRef ref="ErrorLog"/>
+        </Logger>
+
+        <!-- security log : debug -->
+        <logger name="org.springframework.security" level="debug" additivity="false">
+            <AppenderRef ref="ConsoleLog" />
+            <AppenderRef ref="FileLog"/>
+            <AppenderRef ref="DebugLog"/>
+            <AppenderRef ref="ErrorLog"/>
+        </logger>
+
+        <!-- 프로젝트 패키지 내 log : debug -->
+        <logger name="com.trade.project" level="debug" additivity="false">
+            <AppenderRef ref="ConsoleLog" />
+            <AppenderRef ref="FileLog"/>
+            <AppenderRef ref="DebugLog"/>
+            <AppenderRef ref="ErrorLog"/>
+        </logger>
+
+    </Loggers>
+</Configuration>

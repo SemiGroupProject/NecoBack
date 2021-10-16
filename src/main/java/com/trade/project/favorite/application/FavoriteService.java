@@ -4,5 +4,10 @@ import com.trade.project.member.domain.Member;
 
 public interface FavoriteService {
 
-    Long createFavorite(Member member, Long itemId);
+    FavoriteResponse createFavorite(Member member, Long itemId);
+
+    void deleteFavorite(Member member, Long itemId);
+
+    FavoriteCountResponse countFavorites(Member member, Long itemId);
+
 }

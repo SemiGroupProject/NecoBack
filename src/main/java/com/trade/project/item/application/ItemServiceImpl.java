@@ -67,13 +67,4 @@ public class ItemServiceImpl implements ItemService{
         itemRepository.deleteById(id);
     }
 
-
-    /**
-     * 추후 분리할 Read
-     */
-    @Transactional(readOnly = true)
-    @Override
-    public Item findItemById(Long id) {
-        return itemRepository.findById(id).orElseThrow();
-    }
 }
