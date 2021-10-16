@@ -2,13 +2,11 @@ package com.trade.project.item.domain;
 
 import com.trade.project.common.domain.BaseTimeEntity;
 import com.trade.project.common.exceptions.InvalidValueException;
-import com.trade.project.item.domain.enums.Category;
 import com.trade.project.item.domain.enums.ShippingPrice;
 import com.trade.project.item.application.ItemRequest;
 import com.trade.project.member.domain.Member;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 
 import javax.persistence.*;
 import java.util.List;
@@ -33,7 +31,8 @@ public class Item extends BaseTimeEntity {
 
     private long price;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @Embedded
@@ -66,7 +65,7 @@ public class Item extends BaseTimeEntity {
     }
 
     // 아이템 생성
-    public static Item createItem (ItemRequest req, Member member) {
+    public static Item createItem (ItemRequest req, Member member, Category category) {
         if (member.getId() == null) {
             throw new InvalidValueException(MEMBER_NOT_FOUND);
         }
@@ -75,7 +74,7 @@ public class Item extends BaseTimeEntity {
                 .title(req.getTitle())
                 .content(req.getContent())
                 .price(req.getPrice())
-                .category(Category.fromString(req.getCategory()))
+                .category(category)
                 .tradeArea(req.getTradeArea())
                 .shippingPrice(ShippingPrice.convertShippingPrice(req.getShippingPrice()))
                 .member(member)
@@ -103,13 +102,13 @@ public class Item extends BaseTimeEntity {
     }
 
     // 아이템 정보 수정
-    public void updateItem(ItemRequest req) {
-        title = req.getTitle();
-        content = req.getContent();
-        price = req.getPrice();
-        category = Category.fromString(req.getCategory());
-        tradeArea = req.getTradeArea();
-        shippingPrice = ShippingPrice.convertShippingPrice(req.getShippingPrice());
+    public void updateItem(ItemRequest req, Category category) {
+        this.title = req.getTitle();
+        this.content = req.getContent();
+        this.price = req.getPrice();
+        this.category = category;
+        this.tradeArea = req.getTradeArea();
+        this.shippingPrice = ShippingPrice.convertShippingPrice(req.getShippingPrice());
     }
 
 }

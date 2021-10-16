@@ -3,11 +3,7 @@ package com.trade.project.item.presentation;
 import com.trade.project.common.dto.ApiUtils;
 import com.trade.project.common.dto.NecoResponse;
 
-import com.trade.project.item.application.ItemResponse;
-import com.trade.project.item.application.ItemService;
-import com.trade.project.item.application.PageRequest;
-import com.trade.project.item.domain.enums.Category;
-import com.trade.project.item.application.ItemRequest;
+import com.trade.project.item.application.*;
 
 import com.trade.project.item.query.ItemDao;
 import com.trade.project.member.domain.Member;
@@ -24,6 +20,7 @@ import java.util.List;
 
 import static com.trade.project.common.constant.NecoAPI.CATEGORY;
 import static com.trade.project.common.constant.NecoAPI.ITEM;
+import static com.trade.project.common.exceptions.ErrorCode.CATEGORY_NOT_FOUND;
 
 @RequiredArgsConstructor
 @RestController
@@ -46,9 +43,10 @@ public class ItemController {
 
     // [GET] 카테고리 조회
     @GetMapping(CATEGORY)
-    public ResponseEntity<NecoResponse<Category[]>> findCategory(){
+    public ResponseEntity<NecoResponse<List<CategoryResponse>>> findCategory(){
+        List<CategoryResponse> res = itemService.showCategory();
         return ResponseEntity
-                .ok(ApiUtils.successResponse(Category.values()));
+                .ok(ApiUtils.successResponse(res));
     }
 
     // [GET] 상품 조회 - 메인 20개
@@ -71,9 +69,9 @@ public class ItemController {
     @GetMapping(value = ITEM, params = {"page", "size", "category"})
     public ResponseEntity<NecoResponse<Page<ItemResponse>>> showPageByCategory (
             PageRequest pageable,
-            @RequestParam String category){
+            @RequestParam int categoryId){
         // Page 객체 전부를 넘겨주는데 몇개만 넘겨줘도 될거같음
-        Page<ItemResponse> res = itemDao.showPageByCategory(pageable.of(), category);
+        Page<ItemResponse> res = itemDao.showPageByCategory(pageable.of(), categoryId);
 
         return ResponseEntity
                 .ok(ApiUtils.successResponse(res));

@@ -1,6 +1,7 @@
 package com.trade.project.member.domain;
 
 import com.trade.project.item.application.ItemRequest;
+import com.trade.project.item.domain.Category;
 import com.trade.project.item.domain.Item;
 import com.trade.project.store.domain.Store;
 import lombok.AccessLevel;
@@ -80,7 +81,7 @@ public class Member {
     }
 
     // Item 등록
-    public Item createItem(ItemRequest item){
-        return Item.createItem(item,this);
+    public Item createItem(ItemRequest item, Category category){
+        return Item.createItem(item,this, category);
     }
 }

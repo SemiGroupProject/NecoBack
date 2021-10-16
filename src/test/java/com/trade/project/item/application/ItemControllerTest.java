@@ -48,7 +48,7 @@ class ItemControllerTest extends ProjectApplicationTests {
     void setUp() throws Exception {
         List<String> roles = new ArrayList<>();
         roles.add("ROLE_USER");
-        token += jwtTokenProvider.createToken("test",roles);
+        token += jwtTokenProvider.createToken("user01",roles);
     }
 
     @Test
@@ -100,15 +100,14 @@ class ItemControllerTest extends ProjectApplicationTests {
     @Test
     @DisplayName("상품의 상세정보를 조회한다.")
     void show() throws Exception {
-        this.mockMvc.perform(RestDocumentationRequestBuilders.get("/api/"+NecoAPI.ITEM+"/{id}","7")
+        this.mockMvc.perform(RestDocumentationRequestBuilders.get("/api/"+NecoAPI.ITEM+"/{id}","1")
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andDo(document.document(
                         pathParameters(
                                 parameterWithName("id").description("상세정보를 조회할 상품의 아이디")
-                        ),
-                        customResponseFields(ITEM_GET_RES))
+                        ),customResponseFields(ITEM_GET_RES))
                 );
     }
 
@@ -117,7 +116,7 @@ class ItemControllerTest extends ProjectApplicationTests {
     void showPageByCategory() throws Exception {
         mockMvc.perform(get("/api/"+NecoAPI.ITEM).param("page", "1")
                 .param("size","20")
-                .param("category","MOBILE")
+                .param("categoryId","1")
                 .contentType(MediaType.ALL))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -125,11 +124,11 @@ class ItemControllerTest extends ProjectApplicationTests {
                         requestParameters(
                                 parameterWithName("page").description("페이지 번호"),
                                 parameterWithName("size").description("한 페이지당 보여질 게시글 수"),
-                                parameterWithName("category").description("카테고리")
+                                parameterWithName("categoryId").description("카테고리 아이디")
                                 //),
                                 //customResponseFields(MEMBER_GET_DUPLICATE_RES))
-                        ))
-                );
+                        )
+                ));
     }
 
     @Test
@@ -155,7 +154,7 @@ class ItemControllerTest extends ProjectApplicationTests {
     @Test
     @DisplayName("상품정보를 수정한다.")
     void putItem() throws Exception {
-        this.mockMvc.perform(RestDocumentationRequestBuilders.put("/api/"+NecoAPI.ITEM+"/{id}","7")
+        this.mockMvc.perform(RestDocumentationRequestBuilders.put("/api/"+NecoAPI.ITEM+"/{id}","1")
                 .header("Authorization", token)
                 .content(ITEM_REQUEST_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -174,7 +173,7 @@ class ItemControllerTest extends ProjectApplicationTests {
     @DisplayName("상품정보를 삭제한다.")
     @Transactional
     void deleteItem() throws Exception {
-        this.mockMvc.perform(RestDocumentationRequestBuilders.delete("/api/"+NecoAPI.ITEM+"/{id}","8")
+        this.mockMvc.perform(RestDocumentationRequestBuilders.delete("/api/"+NecoAPI.ITEM+"/{id}","2")
                 .header("Authorization", token)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
