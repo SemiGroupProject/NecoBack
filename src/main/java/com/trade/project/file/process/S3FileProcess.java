@@ -9,6 +9,7 @@ import com.trade.project.file.s3provider.S3Uploader;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -40,19 +41,20 @@ public class S3FileProcess implements FileProcess{
     }
 
     @Override
-    public ItemImage uploadFile(MultipartFile... files) throws IOException, IllegalStateException, IllegalArgumentException {
+    public List<ItemImage> uploadFile(MultipartFile... files) throws IOException, IllegalStateException, IllegalArgumentException {
         if(files.length > fileCount) {
             throw new InvalidValueException(ErrorCode.FILE_INPUT_AMOUNT);
         }
 
+        List<ItemImage> images = new ArrayList<>();
+
         for(MultipartFile file : files) {
-            fileUrls.append(s3Uploader.upload(file, convertUniqueFileName(file), dirName))
-                    .append(">");
+            String fileName = convertUniqueFileName(file);
+            String url = s3Uploader.upload(file, fileName, dirName);
+            images.add(new ItemImage(url,fileName));
         }
 
-        deleteLastGt();
-
-        return new ItemImage(fileUrls.toString(), fileNames.toString());
+        return images;
     }
 
     @Override
@@ -61,36 +63,24 @@ public class S3FileProcess implements FileProcess{
             throw new InvalidValueException(ErrorCode.INVALID_INPUT_VALUE);
         }
 
-        String[] fileOriginNames = fileName.split(">");
-
-        if(fileOriginNames.length > 1) {
-            deleteFiles(fileOriginNames);
-        }
-
-        s3Deleter.delete(dirName, fileOriginNames[0]);
+//        String[] fileOriginNames = fileName.split(">");
+//
+//        if(fileOriginNames.length > 1) {
+//            deleteFiles(fileOriginNames);
+//        }
+//
+//        s3Deleter.delete(dirName, fileOriginNames[0]);
     }
 
     private String convertUniqueFileName(MultipartFile file) {
-        String fileName = UUID.randomUUID() + file.getOriginalFilename();
-
-        fileNames.append(fileName)
-                .append(">");
-
-        return fileName;
+        return UUID.randomUUID() + file.getOriginalFilename();
     }
 
-    private void deleteLastGt() {
-        fileNames.deleteCharAt(fileNames.length() - 1);
-        fileUrls.deleteCharAt(fileUrls.length() - 1);
-    }
 
-    private void deleteFiles(String[] fileOriginNames) {
-        s3Deleter.deletes(dirName, convertList(fileOriginNames));
-    }
 
-    private List<String> convertList(String[] fileOriginNames) {
-        return Arrays.stream(fileOriginNames)
-                .map(f -> dirName + "/" + f)
-                .collect(Collectors.toList());
-    }
+//    private List<String> convertList(String[] fileOriginNames) {
+//        return Arrays.stream(fileOriginNames)
+//                .map(f -> dirName + "/" + f)
+//                .collect(Collectors.toList());
+//    }
 }

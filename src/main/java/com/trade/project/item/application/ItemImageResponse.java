@@ -18,6 +18,11 @@ public class ItemImageResponse {
     private String url;
     private String fileName;
 
+    public ItemImageResponse(String url, String fileName) {
+        this.url = url;
+        this.fileName = fileName;
+    }
+
     public static List<ItemImageResponse> listOf(ItemImages itemImages) {
         List<ItemImage> images = itemImages.getImages();
         return images.stream()
