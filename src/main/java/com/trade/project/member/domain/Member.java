@@ -96,7 +96,6 @@ public class Member {
     public Favorite createFavorite(Item item) {
         Favorite favorite = new Favorite(this, item);
         favorites.add(favorite);
-        item.insertFavorite(favorite);
         return favorite;
     }
 }
