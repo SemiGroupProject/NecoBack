@@ -8,6 +8,6 @@ public interface FavoriteService {
 
     void deleteFavorite(Member member, Long itemId);
 
-    FavoriteCountResponse countFavorites(Member member, Long itemId);
+    FavoriteCountResponse countFavorites(Long itemId);
 
 }

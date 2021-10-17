@@ -44,7 +44,13 @@ public class MemberFixture {
      *  회원 LOGIN MVC TEST JSON
      */
     public static String MEMBER_JOIN_ACCOUNT_ID = "junco";
+    public static String MEMBER_TEST_ACCOUNT_ID = "test1";
     public static String MEMBER_JOIN_PASSWORD = "1234";
+    public static String MEMBER_TEST_PASSWORD = "12345";
+
+    public static String MEMBER_TEST_LOGIN_JSON_1 = "{\n" +
+            "\"accountId\"" + ":" + "\"" + MEMBER_TEST_ACCOUNT_ID + "\""
+            + "," + "\"password\"" + ":" + "\"" + MEMBER_TEST_PASSWORD + "\"" + "}";
 
     public static String MEMBER_LOGIN_JSON_1 = "{\n" +
             "\"accountId\"" + ":" + "\"" + MEMBER_JOIN_ACCOUNT_ID + "\""

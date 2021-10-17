@@ -4,6 +4,7 @@ import com.trade.project.ProjectApplicationTests;
 import com.trade.project.favorite.domain.FavoriteRepository;
 import com.trade.project.item.application.ItemService;
 import com.trade.project.item.application.ItemServiceImpl;
+import com.trade.project.item.domain.CategoryRepository;
 import com.trade.project.item.domain.ItemImageRepository;
 import com.trade.project.item.domain.ItemRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,19 +24,17 @@ class FavoriteServiceImplTest extends ProjectApplicationTests {
     @Mock
     private ItemImageRepository itemImageRepository;
 
+    @Mock
+    private CategoryRepository categoryRepository;
+
     private ItemService itemService;
     private FavoriteService favoriteService;
 
     @BeforeEach
     void setUp() {
-        itemService = new ItemServiceImpl(itemRepository, itemImageRepository);
+        itemService = new ItemServiceImpl(itemRepository, itemImageRepository, categoryRepository);
         favoriteService = new FavoriteServiceImpl(favoriteRepository, itemRepository);
     }
-
-    @DisplayName("찜 등")
-    @Test
-    void createFavorite() throws Exception {
-
-    }
+    
 
 }

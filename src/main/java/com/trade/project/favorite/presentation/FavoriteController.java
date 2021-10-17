@@ -34,9 +34,8 @@ public class FavoriteController {
     }
 
     @GetMapping("/favorites/{itemId}")
-    public ResponseEntity<NecoResponse<FavoriteCountResponse>> countFavorites(@PathVariable("itemId") Long id,
-                                                                              @LoginMember Member member) {
+    public ResponseEntity<NecoResponse<FavoriteCountResponse>> countFavorites(@PathVariable("itemId") Long id) {
         return ResponseEntity.ok()
-                .body(ApiUtils.successResponse(favoriteService.countFavorites(member, id)));
+                .body(ApiUtils.successResponse(favoriteService.countFavorites(id)));
     }
 }

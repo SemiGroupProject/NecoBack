@@ -12,6 +12,6 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
 
     Optional<Favorite> findFavoriteByMemberAndItem(Member member, Item item);
 
-    @Query("select count(f.id) from Favorite f where f.item =: item and f.member =: member")
-    long findCountFavoritesByItemId(@Param("member") Member member, @Param("item") Item item);
+    @Query("select count(f.id) from Favorite f join fetch f.item i where i.id =: itemId")
+    long findCountFavoritesByItemId(@Param("itemId") Long itemId);
 }

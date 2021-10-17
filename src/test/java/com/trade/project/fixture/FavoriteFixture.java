@@ -1,7 +1,10 @@
 package com.trade.project.fixture;
 
-import com.trade.project.favorite.domain.Favorite;
-
 public class FavoriteFixture {
+
+
+    public static long ITEM_ID = 1L;
+    public static long ITEM_ID2 = 2L;
+
 
 }

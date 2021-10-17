@@ -22,7 +22,13 @@ public class FavoriteServiceImpl implements FavoriteService {
     @Override
     public FavoriteResponse createFavorite(Member member, Long itemId) {
         Item item = itemRepository.findById(itemId).orElseThrow();
-        return new FavoriteResponse(favoriteRepository.save(member.createFavorite(item)).getId());
+        Optional<Favorite> optionalFavorite = favoriteRepository.findFavoriteByMemberAndItem(member, item);
+
+        if (optionalFavorite.isEmpty()) {
+            return new FavoriteResponse(favoriteRepository.save(member.createFavorite(item)).getId());
+        }
+
+        throw new IllegalArgumentException("이미 찜을 했으므로 추가할 수 없습니다.");
     }
 
     @Transactional
@@ -36,8 +42,7 @@ public class FavoriteServiceImpl implements FavoriteService {
 
     @Transactional(readOnly = true)
     @Override
-    public FavoriteCountResponse countFavorites(Member member, Long itemId) {
-        Item item = itemRepository.findById(itemId).orElseThrow();
-        return new FavoriteCountResponse(favoriteRepository.findCountFavoritesByItemId(member, item));
+    public FavoriteCountResponse countFavorites(Long itemId) {
+        return new FavoriteCountResponse(favoriteRepository.findCountFavoritesByItemId(itemId));
     }
 }
