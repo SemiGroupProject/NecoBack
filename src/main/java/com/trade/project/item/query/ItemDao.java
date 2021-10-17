@@ -8,7 +8,7 @@ import com.trade.project.item.application.ItemResponse;
 import com.trade.project.item.application.QItemResponse;
 import static com.trade.project.item.domain.QItem.*;
 
-import com.trade.project.item.domain.enums.Category;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -34,11 +34,11 @@ public class ItemDao {
                 .fetch();
     }
 
-    public Page<ItemResponse> showPageByCategory(Pageable pageable, String category) {
+    public Page<ItemResponse> showPageByCategory(Pageable pageable, int categoryId) {
         QueryResults<ItemResponse> result = queryFactory.selectDistinct(new QItemResponse(item))
                 .from(item)
                 .orderBy(item.createdDate.desc())
-                .where(equalCategory(category))
+                .where(equalCategory(categoryId))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .orderBy(item.createdDate.desc())
@@ -60,8 +60,8 @@ public class ItemDao {
         return new PageImpl<>(result.getResults(),pageable,result.getTotal());
     }
 
-    private BooleanExpression equalCategory(String category){
-        return item.category.eq(Category.fromString(category));
+    private BooleanExpression equalCategory(long categoryId){
+        return item.category.id.eq(categoryId);
     }
 
     private BooleanExpression containsTitle(String keyword) {

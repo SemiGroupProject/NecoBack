@@ -2,6 +2,8 @@ package com.trade.project.item.application;
 
 import com.trade.project.member.domain.Member;
 
+import java.util.List;
+
 public interface ItemService {
     Long create(ItemRequest itemRequest, Member member);
 
@@ -11,4 +13,5 @@ public interface ItemService {
 
     void delete(Long id, Member loginMember);
 
+    List<CategoryResponse> showCategory();
 }

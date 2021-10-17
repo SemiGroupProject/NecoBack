@@ -15,17 +15,17 @@ public class ItemRequest {
     private String title;
     private String content;
     private long price;
-    private String category;
+    private Long categoryId;
     private List<ItemImage> itemImages;
     private String tradeArea;
     private String shippingPrice;
 
     @Builder
-    public ItemRequest(String title, String content, long price, String category, List<ItemImage> itemImages, String tradeArea, String shippingPrice) {
+    public ItemRequest(String title, String content, long price, Long categoryId, List<ItemImage> itemImages, String tradeArea, String shippingPrice) {
         this.title = title;
         this.content = content;
         this.price = price;
-        this.category = category;
+        this.categoryId = categoryId;
         this.itemImages = itemImages;
         this.tradeArea = tradeArea;
         this.shippingPrice = shippingPrice;

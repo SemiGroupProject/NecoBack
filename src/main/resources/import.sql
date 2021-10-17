@@ -1,0 +1,14 @@
+INSERT INTO category (category_name, level, parent) VALUES('의류',1,0);
+INSERT INTO category (category_name, level, parent) VALUES('남성의류',2,1);
+INSERT INTO category (category_name, level, parent) VALUES('여성의류',2,1);
+INSERT INTO category (category_name, level, parent) VALUES('신발',2,1);
+INSERT INTO category (category_name, level, parent) VALUES('전자제품',1,0);
+INSERT INTO category (category_name, level, parent) VALUES('컴퓨터',2,5);
+INSERT INTO category (category_name, level, parent) VALUES('모바일 제품',2,5);
+INSERT INTO category (category_name, level, parent) VALUES('카메라',2,5);
+INSERT INTO category (category_name, level, parent) VALUES('가전제품',2,5);
+INSERT INTO category (category_name, level, parent) VALUES('잡화',1,0);
+INSERT INTO category (category_name, level, parent) VALUES('도서',2,10);
+INSERT INTO category (category_name, level, parent) VALUES('티켓',2,10);
+INSERT INTO category (category_name, level, parent) VALUES('음반',2,10);
+INSERT INTO category (category_name, level, parent) VALUES('악세사리',2,10);
