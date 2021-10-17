@@ -66,7 +66,7 @@ public class ItemController {
     }
 
     // [GET] 상품 조회 - 카테고리별 조회
-    @GetMapping(value = ITEM, params = {"page", "size", "category"})
+    @GetMapping(value = ITEM, params = {"page", "size", "categoryId"})
     public ResponseEntity<NecoResponse<Page<ItemResponse>>> showPageByCategory (
             PageRequest pageable,
             @RequestParam int categoryId){
